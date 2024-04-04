@@ -1,0 +1,8 @@
+[
+{
+  "directory": "/home/ubuntu/git/RS2_Group_18/week07/project/build",
+  "command": "/usr/bin/c++   -g -o CMakeFiles/asdf.dir/main.cpp.o -c /home/ubuntu/git/RS2_Group_18/week07/project/main.cpp",
+  "file": "/home/ubuntu/git/RS2_Group_18/week07/project/main.cpp",
+  "output": "CMakeFiles/asdf.dir/main.cpp.o"
+}
+]

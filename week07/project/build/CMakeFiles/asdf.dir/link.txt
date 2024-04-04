@@ -1,0 +1,1 @@
+/usr/bin/c++ -g CMakeFiles/asdf.dir/main.cpp.o -o asdf
