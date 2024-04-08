@@ -1,0 +1,14 @@
+[
+{
+  "directory": "/home/ubuntu/git/RS2_Group_18/project/cpp/build",
+  "command": "/usr/bin/c++   -g -o CMakeFiles/cpp.dir/main.cpp.o -c /home/ubuntu/git/RS2_Group_18/project/cpp/main.cpp",
+  "file": "/home/ubuntu/git/RS2_Group_18/project/cpp/main.cpp",
+  "output": "CMakeFiles/cpp.dir/main.cpp.o"
+},
+{
+  "directory": "/home/ubuntu/git/RS2_Group_18/project/cpp/build",
+  "command": "/usr/bin/c++   -g -o CMakeFiles/cpp.dir/asdf.cpp.o -c /home/ubuntu/git/RS2_Group_18/project/cpp/asdf.cpp",
+  "file": "/home/ubuntu/git/RS2_Group_18/project/cpp/asdf.cpp",
+  "output": "CMakeFiles/cpp.dir/asdf.cpp.o"
+}
+]
