@@ -1,0 +1,2 @@
+/usr/bin/ar qc libcart.a CMakeFiles/cart.dir/cart.cpp.o
+/usr/bin/ranlib libcart.a

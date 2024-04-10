@@ -1,32 +1,51 @@
 #include <iostream>
 #include <vector>
-#include "asdf.h"
+#include <iomanip>   //#include "asdf.h"
+#include <limits>
+
+#include "graph.h"
+#include "greedy.h"
+
+
 
 int main(int, char**){
     std::cout << "Hello, from Jacooooob!\n";
 
-    Asdf inst;
+    //Asdf inst;
+    Graph inst;
 
-    //std::cout << inst.getDescription() << std::endl;
-
-
-
-// Build the graph - Added here self connections to make it easier for our search
-    AdjacencyList graph = {
-        {{0,0},{1,50},{2,80},{3,40}},       // Node 0 is connected to nodes 0,1,2 and 3 (via edges with weights)
-        {{0,50},{1,0},{2,10},{3,100}},      // Node 1 is connected to nodes 0,1,2 and 3 (via edges)
-        {{0,80},{1,10},{2,0},{3,20}},       // Node 2 is connected to ....
-        {{0,40},{1,100},{2,20},{3,0}},      // Node 3 is connected to ....
+    // Given Cartesian points
+    std::vector<point_ref::Point> points = {
+        {5, 5}, {5, 3}, {1, 5}, {3, 6}, {3, 7}, {8, 7}, {8, 6}, {10, 5}
     };
 
-    std::vector<int> path;
+      // Build the graph
+    Graph::AdjacencyList adjacencyList = inst.buildGraph(points);
 
-    std::cout << "Adjacency list: " << std::endl;
-    inst.print_adjacency_list(graph);
+    // Print the adjacency list with distances rounded to two decimal places
+    for (int i = 0; i < adjacencyList.size(); ++i) {
+        std::cout << "Node " << i << ":";
+        for (const auto& edge : adjacencyList.at(i)) {
+            std::cout << " Node " << edge.destination << " [weight: "<< std::fixed << std::setprecision(2) << edge.weight << "]";
+        }
+        std::cout << std::endl;
+    }
 
-    path = inst.brute_force_tsp(graph, 0);
-    std::cout << "Path found by tsp search: " << std::endl;
-    inst.print_path(graph,path);
+    // Create a TSP solver instance
+    Greedy tspSolver(adjacencyList);
+
+    // Specify the start node
+    int startNode = 2; // Starting from node 0
+
+    // Solve TSP
+    auto [path, totalDistance] = tspSolver.solve(startNode);
+
+    // Print the path
+    std::cout << "TSP Path starting from node " << startNode << ":\n";
+    for (int node : path) {
+        std::cout << node << " ";
+    }
+    std::cout << "\nTotal distance traveled: " << totalDistance << std::endl;
 
     return 0;
 }

@@ -7,8 +7,14 @@
 },
 {
   "directory": "/home/ubuntu/git/RS2_Group_18/project/cpp/build",
-  "command": "/usr/bin/c++   -g -o CMakeFiles/cpp.dir/asdf.cpp.o -c /home/ubuntu/git/RS2_Group_18/project/cpp/asdf.cpp",
-  "file": "/home/ubuntu/git/RS2_Group_18/project/cpp/asdf.cpp",
-  "output": "CMakeFiles/cpp.dir/asdf.cpp.o"
+  "command": "/usr/bin/c++   -g -o CMakeFiles/cpp.dir/graph.cpp.o -c /home/ubuntu/git/RS2_Group_18/project/cpp/graph.cpp",
+  "file": "/home/ubuntu/git/RS2_Group_18/project/cpp/graph.cpp",
+  "output": "CMakeFiles/cpp.dir/graph.cpp.o"
+},
+{
+  "directory": "/home/ubuntu/git/RS2_Group_18/project/cpp/build",
+  "command": "/usr/bin/c++   -g -o CMakeFiles/cpp.dir/greedy.cpp.o -c /home/ubuntu/git/RS2_Group_18/project/cpp/greedy.cpp",
+  "file": "/home/ubuntu/git/RS2_Group_18/project/cpp/greedy.cpp",
+  "output": "CMakeFiles/cpp.dir/greedy.cpp.o"
 }
 ]

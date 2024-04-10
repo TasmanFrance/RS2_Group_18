@@ -1,6 +1,8 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/cpp.dir/asdf.cpp.o"
-  "CMakeFiles/cpp.dir/asdf.cpp.o.d"
+  "CMakeFiles/cpp.dir/graph.cpp.o"
+  "CMakeFiles/cpp.dir/graph.cpp.o.d"
+  "CMakeFiles/cpp.dir/greedy.cpp.o"
+  "CMakeFiles/cpp.dir/greedy.cpp.o.d"
   "CMakeFiles/cpp.dir/main.cpp.o"
   "CMakeFiles/cpp.dir/main.cpp.o.d"
   "cpp"
