@@ -116,11 +116,16 @@ private:
 			return;
 		}
 
-		// Estimate pose of detected markers
-		cv::Mat camera_matrix = cv::Mat::eye(3, 3, CV_64F);		  // Update with actual camera matrix
-		cv::Mat distortion_coeffs = cv::Mat::zeros(5, 1, CV_64F); // Update with actual distortion coefficients
+		// Estimate pose of detected markers using member variables
 		std::vector<cv::Vec3d> rvecs, tvecs;
-		cv::aruco::estimatePoseSingleMarkers(marker_corners, 0.05, camera_matrix, distortion_coeffs, rvecs, tvecs);
+		cv::aruco::estimatePoseSingleMarkers(marker_corners, 0.14, camera_matrix_, distortion_coeffs_, rvecs, tvecs);
+
+		// Check if pose estimation succeeded
+		if (rvecs.empty() || tvecs.empty())
+		{
+			RCLCPP_WARN(this->get_logger(), "Pose estimation failed");
+			return;
+		}
 
 		// Publish detected markers and their poses
 		auto pose_array_msg = std::make_shared<geometry_msgs::msg::PoseArray>();
@@ -135,9 +140,26 @@ private:
 			// Convert rotation vector to quaternion
 			cv::Mat rot_matrix;
 			cv::Rodrigues(rvecs[i], rot_matrix);
-			cv::Mat rot_matrix_transposed = rot_matrix.t();
+			// Convert rotation vector to quaternion
+			cv::Vec3d rotation_vector(rot_matrix.at<double>(0, 0), rot_matrix.at<double>(1, 0), rot_matrix.at<double>(2, 0));
+			double theta = cv::norm(rotation_vector);
 			cv::Vec4d quaternion;
-			cv::Rodrigues(rot_matrix_transposed, quaternion);
+			if (theta > 0)
+			{
+				cv::Vec3d axis = rotation_vector / theta;
+				quaternion[0] = axis[0] * sin(theta / 2);
+				quaternion[1] = axis[1] * sin(theta / 2);
+				quaternion[2] = axis[2] * sin(theta / 2);
+				quaternion[3] = cos(theta / 2);
+			}
+			else
+			{
+				quaternion[0] = 0;
+				quaternion[1] = 0;
+				quaternion[2] = 0;
+				quaternion[3] = 1;
+			}
+
 			pose.orientation.x = quaternion[0];
 			pose.orientation.y = quaternion[1];
 			pose.orientation.z = quaternion[2];
