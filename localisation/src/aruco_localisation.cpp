@@ -2,9 +2,14 @@
 #include <sensor_msgs/msg/image.hpp>
 #include <sensor_msgs/msg/camera_info.hpp>
 #include <geometry_msgs/msg/pose_array.hpp>
+#include <std_msgs/msg/float64_multi_array.hpp>
 #include <opencv2/opencv.hpp>
 #include <opencv2/aruco.hpp>
-#include <std_msgs/msg/float64_multi_array.hpp>
+#include <Eigen/Core>
+#include <Eigen/Geometry>
+#include <opencv2/core/eigen.hpp>
+
+// #include <moveit/planning_interface/planning_in terface.h>
 
 class ArucoLocalisationNode : public rclcpp::Node
 {
@@ -108,7 +113,7 @@ private:
 		// Detect ArUco markers
 		std::vector<int> marker_ids;
 		std::vector<std::vector<cv::Point2f>> marker_corners;
-		cv::aruco::detectMarkers(gray_image, dictionary, marker_corners, marker_ids, parameters);
+		cv::aruco::detectMarkers(gray_image, dictionary, marker_corners, marker_ids, parameters, cv::noArray(), camera_matrix_, distortion_coeffs_);
 
 		if (marker_ids.empty())
 		{
@@ -130,6 +135,7 @@ private:
 		// Publish detected markers and their poses
 		auto pose_array_msg = std::make_shared<geometry_msgs::msg::PoseArray>();
 		pose_array_msg->header = msg->header;
+
 		for (size_t i = 0; i < marker_ids.size(); ++i)
 		{
 			geometry_msgs::msg::Pose pose;
@@ -140,30 +146,16 @@ private:
 			// Convert rotation vector to quaternion
 			cv::Mat rot_matrix;
 			cv::Rodrigues(rvecs[i], rot_matrix);
-			// Convert rotation vector to quaternion
-			cv::Vec3d rotation_vector(rot_matrix.at<double>(0, 0), rot_matrix.at<double>(1, 0), rot_matrix.at<double>(2, 0));
-			double theta = cv::norm(rotation_vector);
-			cv::Vec4d quaternion;
-			if (theta > 0)
-			{
-				cv::Vec3d axis = rotation_vector / theta;
-				quaternion[0] = axis[0] * sin(theta / 2);
-				quaternion[1] = axis[1] * sin(theta / 2);
-				quaternion[2] = axis[2] * sin(theta / 2);
-				quaternion[3] = cos(theta / 2);
-			}
-			else
-			{
-				quaternion[0] = 0;
-				quaternion[1] = 0;
-				quaternion[2] = 0;
-				quaternion[3] = 1;
-			}
 
-			pose.orientation.x = quaternion[0];
-			pose.orientation.y = quaternion[1];
-			pose.orientation.z = quaternion[2];
-			pose.orientation.w = quaternion[3];
+			// Convert rotation matrix to quaternion
+			Eigen::Matrix3d rot_matrix_eigen;
+			cv::cv2eigen(rot_matrix, rot_matrix_eigen);
+			Eigen::Quaterniond quaternion(rot_matrix_eigen);
+
+			pose.orientation.x = quaternion.x();
+			pose.orientation.y = quaternion.y();
+			pose.orientation.z = quaternion.z();
+			pose.orientation.w = quaternion.w();
 
 			pose_array_msg->poses.push_back(pose);
 		}
