@@ -3,10 +3,13 @@
 #include <sensor_msgs/msg/camera_info.hpp>
 #include <geometry_msgs/msg/pose_array.hpp>
 #include <std_msgs/msg/float64_multi_array.hpp>
+
+#include <eigen3/Eigen/Core>
+#include <eigen3/Eigen/Geometry>
+
 #include <opencv2/opencv.hpp>
 #include <opencv2/aruco.hpp>
-#include <Eigen/Core>
-#include <Eigen/Geometry>
+#include <opencv2/core.hpp>
 #include <opencv2/core/eigen.hpp>
 
 // #include <moveit/planning_interface/planning_in terface.h>

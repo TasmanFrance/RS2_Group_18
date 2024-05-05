@@ -11,9 +11,11 @@ find_package(rclcpp REQUIRED)
 find_package(sensor_msgs REQUIRED)
 find_package(geometry_msgs REQUIRED)
 find_package(OpenCV REQUIRED)
+find_package(Eigen3 REQUIRED)
 
 add_executable(aruco_localisation src/aruco_localisation.cpp)
 target_include_directories(aruco_localisation PUBLIC
+  ${EIGEN3_INCLUDE_DIR} # Add Eigen3 include directory
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:include>)
 target_compile_features(aruco_localisation PUBLIC c_std_99 cxx_std_17)  # Require C99 and C++17
