@@ -18,4 +18,5 @@ Before using this code, make sure you have the following installed:
 This can be used to generate the markers to implement the pose estimation detection, with the IDs, Board Width (mm), Board Height (mm), Dictionary, etc.
 
 -For single marker, can be generated [here](https://chev.me/arucogen/).
+
 -For board or markers/ ChAruco (multiple markers), can be generated [here](https://calib.io/pages/camera-calibration-pattern-generator).
