@@ -61,28 +61,33 @@ private:
 
 	void processDepthMap(const sensor_msgs::msg::Image::SharedPtr msg)
 	{
-		// Check if the image is in the expected format
-		if (msg->encoding != "16UC1")
-		{
-			RCLCPP_WARN(this->get_logger(), "Unexpected image encoding: %s", msg->encoding.c_str());
-			return;
-		}
+    // Check if the image is in the expected format
+    if (msg->encoding != "16UC1")
+    {
+        RCLCPP_WARN(this->get_logger(), "Unexpected image encoding: %s", msg->encoding.c_str());
+        return;
+    }
 
-		// Convert sensor_msgs::Image to cv::Mat
-		cv::Mat depth_image(msg->height, msg->width, CV_16UC1, const_cast<unsigned char *>(msg->data.data()), msg->step);
+    // Convert sensor_msgs::Image to cv::Mat
+    cv::Mat depth_image(msg->height, msg->width, CV_16UC1, const_cast<unsigned char *>(msg->data.data()), msg->step);
 
-		// Process depth map (e.g., find distances, detect objects, etc.)
-		// Example: find minimum and maximum depth values
-		double min_depth, max_depth;
-		cv::minMaxLoc(depth_image, &min_depth, &max_depth);
+    // Apply median filter to the depth image
+    cv::Mat filtered_depth_image;
+    cv::medianBlur(depth_image, filtered_depth_image, 5);  // 5 is the size of the median filter kernel
 
-		// Publish the min and max depth values (as an example)
-		auto depth_range_msg = std::make_shared<std_msgs::msg::Float64MultiArray>();
-		depth_range_msg->data.push_back(min_depth);
-		depth_range_msg->data.push_back(max_depth);
-		// Publish depth range
-		// depth_range_publisher_->publish(*depth_range_msg);
+    // Process depth map (e.g., find distances, detect objects, etc.)
+    // Example: find minimum and maximum depth values
+    double min_depth, max_depth;
+    cv::minMaxLoc(filtered_depth_image, &min_depth, &max_depth);
+
+    // Publish the min and max depth values (as an example)
+    auto depth_range_msg = std::make_shared<std_msgs::msg::Float64MultiArray>();
+    depth_range_msg->data.push_back(min_depth);
+    depth_range_msg->data.push_back(max_depth);
+    // Publish depth range
+    // depth_range_publisher_->publish(*depth_range_msg);
 	}
+
 
 	void updateCameraCalibration(const sensor_msgs::msg::CameraInfo::SharedPtr msg)
 	{
@@ -112,6 +117,7 @@ private:
 		// Define dictionary and detector parameters
 		cv::Ptr<cv::aruco::Dictionary> dictionary = cv::aruco::getPredefinedDictionary(cv::aruco::DICT_6X6_250);
 		cv::Ptr<cv::aruco::DetectorParameters> parameters = cv::aruco::DetectorParameters::create();
+		parameters->cornerRefinementMethod = cv::aruco::CORNER_REFINE_SUBPIX;
 
 		// Detect ArUco markers
 		std::vector<int> marker_ids;
@@ -126,7 +132,7 @@ private:
 
 		// Estimate pose of detected markers using member variables
 		std::vector<cv::Vec3d> rvecs, tvecs;
-		cv::aruco::estimatePoseSingleMarkers(marker_corners, 0.14, camera_matrix_, distortion_coeffs_, rvecs, tvecs);
+		cv::aruco::estimatePoseSingleMarkers(marker_corners, 0.032, camera_matrix_, distortion_coeffs_, rvecs, tvecs);
 
 		// Check if pose estimation succeeded
 		if (rvecs.empty() || tvecs.empty())
