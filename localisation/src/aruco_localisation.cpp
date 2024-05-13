@@ -15,7 +15,7 @@
 #include <opencv2/core/eigen.hpp>
 #include <opencv2/calib3d.hpp>
 
-// #include <moveit/planning_interface/planning_in terface.h>
+
 
 class ArucoLocalisationNode : public rclcpp::Node
 {
@@ -48,20 +48,20 @@ public:
 				// Update camera matrix and distortion coefficients
 				updateCameraCalibration(msg);
 			});
-		marker_publisher_ = this->create_publisher<geometry_msgs::msg::PoseArray>(
+		marker_publisher_ = this->create_publisher<geometry_msgs::msg::PoseStamped>(
 			"detected_markers",
 			10);
-		center_marker_publisher_ = this->create_publisher<geometry_msgs::msg::PoseStamped>(
-			"centerpage_marker",
-			10);
+		// center_marker_publisher_ = this->create_publisher<geometry_msgs::msg::PoseStamped>(
+		// 	"centerpage_marker",
+		// 	10);
 	}
 
 private:
 	rclcpp::Subscription<sensor_msgs::msg::Image>::SharedPtr depth_subscriber_;
 	rclcpp::Subscription<sensor_msgs::msg::Image>::SharedPtr color_subscriber_;
 	rclcpp::Subscription<sensor_msgs::msg::CameraInfo>::SharedPtr camera_info_subscriber_;
-	rclcpp::Publisher<geometry_msgs::msg::PoseArray>::SharedPtr marker_publisher_;
-	rclcpp::Publisher<geometry_msgs::msg::PoseStamped>::SharedPtr center_marker_publisher_;
+	rclcpp::Publisher<geometry_msgs::msg::PoseStamped>::SharedPtr marker_publisher_;
+	// rclcpp::Publisher<geometry_msgs::msg::PoseStamped>::SharedPtr center_marker_publisher_;
 
 	cv::Mat camera_matrix_;
 	cv::Mat distortion_coeffs_;
@@ -132,7 +132,7 @@ private:
 		parameters->cornerRefinementMethod = cv::aruco::CORNER_REFINE_SUBPIX;
 
 		// Create ChArUco board
-		cv::Ptr<cv::aruco::CharucoBoard> charuco_board = cv::aruco::CharucoBoard::create(5, 5, 0.032, 0.023, dictionary);
+		cv::Ptr<cv::aruco::CharucoBoard> charuco_board = cv::aruco::CharucoBoard::create(5, 5, 0.032, 0.024, dictionary);
 
 		// Detect ChArUco markers
 		std::vector<int> marker_ids;
@@ -155,15 +155,14 @@ private:
 			return;
 		}
 
-		auto pose_array_msg = std::make_shared<geometry_msgs::msg::PoseArray>();
-		pose_array_msg->header = msg->header;
+		auto pose_stamped_msg = std::make_shared<geometry_msgs::msg::PoseStamped>();
+		pose_stamped_msg->header = msg->header;
 
-		geometry_msgs::msg::Pose pose;
 		// Apply offset to translation vector
 		cv::Vec3d marker_center = tvec;
-		pose.position.x = marker_center[0];
-		pose.position.y = marker_center[1];
-		pose.position.z = marker_center[2];
+		pose_stamped_msg->pose.position.x = marker_center[0];
+		pose_stamped_msg->pose.position.y = marker_center[1];
+		pose_stamped_msg->pose.position.z = marker_center[2];
 
 		// Convert rotation vector to quaternion
 		cv::Mat rot_matrix;
@@ -174,14 +173,12 @@ private:
 		cv::cv2eigen(rot_matrix, rot_matrix_eigen);
 		Eigen::Quaterniond quaternion(rot_matrix_eigen);
 
-		pose.orientation.x = quaternion.x();
-		pose.orientation.y = quaternion.y();
-		pose.orientation.z = quaternion.z();
-		pose.orientation.w = quaternion.w();
+		pose_stamped_msg->pose.orientation.x = quaternion.x();
+		pose_stamped_msg->pose.orientation.y = quaternion.y();
+		pose_stamped_msg->pose.orientation.z = quaternion.z();
+		pose_stamped_msg->pose.orientation.w = quaternion.w();
 
-		pose_array_msg->poses.push_back(pose);
-
-		marker_publisher_->publish(*pose_array_msg);
+		marker_publisher_->publish(*pose_stamped_msg);
 	}
 
 	//--------------------------------------------------------------------------
