@@ -41,7 +41,7 @@ public:
 				processColorImage(msg);
 			});
 		camera_info_subscriber_ = this->create_subscription<sensor_msgs::msg::CameraInfo>(
-			"/camera/camera/depth/camera_info",
+			"/camera/camera/aligned_depth_to_color/camera_info",
 			10,
 			[this](const sensor_msgs::msg::CameraInfo::SharedPtr msg)
 			{
