@@ -1,1 +1,1 @@
-/usr/bin/c++ -g CMakeFiles/cpp.dir/main.cpp.o CMakeFiles/cpp.dir/graph.cpp.o CMakeFiles/cpp.dir/greedy.cpp.o -o cpp
+/usr/bin/c++ -g CMakeFiles/cpp.dir/publisher.cpp.o CMakeFiles/cpp.dir/graph.cpp.o CMakeFiles/cpp.dir/greedy.cpp.o CMakeFiles/cpp.dir/processor.cpp.o -o cpp

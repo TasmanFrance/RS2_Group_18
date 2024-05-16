@@ -10,7 +10,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/ubuntu/git/RS2_Group_18/project/cpp/graph.cpp" "CMakeFiles/cpp.dir/graph.cpp.o" "gcc" "CMakeFiles/cpp.dir/graph.cpp.o.d"
   "/home/ubuntu/git/RS2_Group_18/project/cpp/greedy.cpp" "CMakeFiles/cpp.dir/greedy.cpp.o" "gcc" "CMakeFiles/cpp.dir/greedy.cpp.o.d"
-  "/home/ubuntu/git/RS2_Group_18/project/cpp/main.cpp" "CMakeFiles/cpp.dir/main.cpp.o" "gcc" "CMakeFiles/cpp.dir/main.cpp.o.d"
+  "/home/ubuntu/git/RS2_Group_18/project/cpp/processor.cpp" "CMakeFiles/cpp.dir/processor.cpp.o" "gcc" "CMakeFiles/cpp.dir/processor.cpp.o.d"
+  "/home/ubuntu/git/RS2_Group_18/project/cpp/publisher.cpp" "CMakeFiles/cpp.dir/publisher.cpp.o" "gcc" "CMakeFiles/cpp.dir/publisher.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

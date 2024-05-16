@@ -571,29 +571,53 @@ greedy.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpp.dir/build.make CMakeFiles/cpp.dir/greedy.cpp.s
 .PHONY : greedy.cpp.s
 
-main.o: main.cpp.o
-.PHONY : main.o
+processor.o: processor.cpp.o
+.PHONY : processor.o
 
 # target to build an object file
-main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpp.dir/build.make CMakeFiles/cpp.dir/main.cpp.o
-.PHONY : main.cpp.o
+processor.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpp.dir/build.make CMakeFiles/cpp.dir/processor.cpp.o
+.PHONY : processor.cpp.o
 
-main.i: main.cpp.i
-.PHONY : main.i
+processor.i: processor.cpp.i
+.PHONY : processor.i
 
 # target to preprocess a source file
-main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpp.dir/build.make CMakeFiles/cpp.dir/main.cpp.i
-.PHONY : main.cpp.i
+processor.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpp.dir/build.make CMakeFiles/cpp.dir/processor.cpp.i
+.PHONY : processor.cpp.i
 
-main.s: main.cpp.s
-.PHONY : main.s
+processor.s: processor.cpp.s
+.PHONY : processor.s
 
 # target to generate assembly for a file
-main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpp.dir/build.make CMakeFiles/cpp.dir/main.cpp.s
-.PHONY : main.cpp.s
+processor.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpp.dir/build.make CMakeFiles/cpp.dir/processor.cpp.s
+.PHONY : processor.cpp.s
+
+publisher.o: publisher.cpp.o
+.PHONY : publisher.o
+
+# target to build an object file
+publisher.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpp.dir/build.make CMakeFiles/cpp.dir/publisher.cpp.o
+.PHONY : publisher.cpp.o
+
+publisher.i: publisher.cpp.i
+.PHONY : publisher.i
+
+# target to preprocess a source file
+publisher.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpp.dir/build.make CMakeFiles/cpp.dir/publisher.cpp.i
+.PHONY : publisher.cpp.i
+
+publisher.s: publisher.cpp.s
+.PHONY : publisher.s
+
+# target to generate assembly for a file
+publisher.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpp.dir/build.make CMakeFiles/cpp.dir/publisher.cpp.s
+.PHONY : publisher.cpp.s
 
 # Help Target
 help:
@@ -641,9 +665,12 @@ help:
 	@echo "... greedy.o"
 	@echo "... greedy.i"
 	@echo "... greedy.s"
-	@echo "... main.o"
-	@echo "... main.i"
-	@echo "... main.s"
+	@echo "... processor.o"
+	@echo "... processor.i"
+	@echo "... processor.s"
+	@echo "... publisher.o"
+	@echo "... publisher.i"
+	@echo "... publisher.s"
 .PHONY : help
 
 

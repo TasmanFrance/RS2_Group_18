@@ -69,19 +69,19 @@ include CMakeFiles/cpp.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/cpp.dir/flags.make
 
-CMakeFiles/cpp.dir/main.cpp.o: CMakeFiles/cpp.dir/flags.make
-CMakeFiles/cpp.dir/main.cpp.o: /home/ubuntu/git/RS2_Group_18/project/cpp/main.cpp
-CMakeFiles/cpp.dir/main.cpp.o: CMakeFiles/cpp.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/git/RS2_Group_18/project/cpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/cpp.dir/main.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/cpp.dir/main.cpp.o -MF CMakeFiles/cpp.dir/main.cpp.o.d -o CMakeFiles/cpp.dir/main.cpp.o -c /home/ubuntu/git/RS2_Group_18/project/cpp/main.cpp
+CMakeFiles/cpp.dir/publisher.cpp.o: CMakeFiles/cpp.dir/flags.make
+CMakeFiles/cpp.dir/publisher.cpp.o: /home/ubuntu/git/RS2_Group_18/project/cpp/publisher.cpp
+CMakeFiles/cpp.dir/publisher.cpp.o: CMakeFiles/cpp.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/git/RS2_Group_18/project/cpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/cpp.dir/publisher.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/cpp.dir/publisher.cpp.o -MF CMakeFiles/cpp.dir/publisher.cpp.o.d -o CMakeFiles/cpp.dir/publisher.cpp.o -c /home/ubuntu/git/RS2_Group_18/project/cpp/publisher.cpp
 
-CMakeFiles/cpp.dir/main.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/cpp.dir/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/git/RS2_Group_18/project/cpp/main.cpp > CMakeFiles/cpp.dir/main.cpp.i
+CMakeFiles/cpp.dir/publisher.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/cpp.dir/publisher.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/git/RS2_Group_18/project/cpp/publisher.cpp > CMakeFiles/cpp.dir/publisher.cpp.i
 
-CMakeFiles/cpp.dir/main.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/cpp.dir/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/git/RS2_Group_18/project/cpp/main.cpp -o CMakeFiles/cpp.dir/main.cpp.s
+CMakeFiles/cpp.dir/publisher.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/cpp.dir/publisher.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/git/RS2_Group_18/project/cpp/publisher.cpp -o CMakeFiles/cpp.dir/publisher.cpp.s
 
 CMakeFiles/cpp.dir/graph.cpp.o: CMakeFiles/cpp.dir/flags.make
 CMakeFiles/cpp.dir/graph.cpp.o: /home/ubuntu/git/RS2_Group_18/project/cpp/graph.cpp
@@ -111,21 +111,37 @@ CMakeFiles/cpp.dir/greedy.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/cpp.dir/greedy.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/git/RS2_Group_18/project/cpp/greedy.cpp -o CMakeFiles/cpp.dir/greedy.cpp.s
 
+CMakeFiles/cpp.dir/processor.cpp.o: CMakeFiles/cpp.dir/flags.make
+CMakeFiles/cpp.dir/processor.cpp.o: /home/ubuntu/git/RS2_Group_18/project/cpp/processor.cpp
+CMakeFiles/cpp.dir/processor.cpp.o: CMakeFiles/cpp.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/git/RS2_Group_18/project/cpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/cpp.dir/processor.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/cpp.dir/processor.cpp.o -MF CMakeFiles/cpp.dir/processor.cpp.o.d -o CMakeFiles/cpp.dir/processor.cpp.o -c /home/ubuntu/git/RS2_Group_18/project/cpp/processor.cpp
+
+CMakeFiles/cpp.dir/processor.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/cpp.dir/processor.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/git/RS2_Group_18/project/cpp/processor.cpp > CMakeFiles/cpp.dir/processor.cpp.i
+
+CMakeFiles/cpp.dir/processor.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/cpp.dir/processor.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/git/RS2_Group_18/project/cpp/processor.cpp -o CMakeFiles/cpp.dir/processor.cpp.s
+
 # Object files for target cpp
 cpp_OBJECTS = \
-"CMakeFiles/cpp.dir/main.cpp.o" \
+"CMakeFiles/cpp.dir/publisher.cpp.o" \
 "CMakeFiles/cpp.dir/graph.cpp.o" \
-"CMakeFiles/cpp.dir/greedy.cpp.o"
+"CMakeFiles/cpp.dir/greedy.cpp.o" \
+"CMakeFiles/cpp.dir/processor.cpp.o"
 
 # External object files for target cpp
 cpp_EXTERNAL_OBJECTS =
 
-cpp: CMakeFiles/cpp.dir/main.cpp.o
+cpp: CMakeFiles/cpp.dir/publisher.cpp.o
 cpp: CMakeFiles/cpp.dir/graph.cpp.o
 cpp: CMakeFiles/cpp.dir/greedy.cpp.o
+cpp: CMakeFiles/cpp.dir/processor.cpp.o
 cpp: CMakeFiles/cpp.dir/build.make
 cpp: CMakeFiles/cpp.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/ubuntu/git/RS2_Group_18/project/cpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/ubuntu/git/RS2_Group_18/project/cpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable cpp"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/cpp.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

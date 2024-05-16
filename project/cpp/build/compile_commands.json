@@ -1,9 +1,9 @@
 [
 {
   "directory": "/home/ubuntu/git/RS2_Group_18/project/cpp/build",
-  "command": "/usr/bin/c++   -g -o CMakeFiles/cpp.dir/main.cpp.o -c /home/ubuntu/git/RS2_Group_18/project/cpp/main.cpp",
-  "file": "/home/ubuntu/git/RS2_Group_18/project/cpp/main.cpp",
-  "output": "CMakeFiles/cpp.dir/main.cpp.o"
+  "command": "/usr/bin/c++   -g -o CMakeFiles/cpp.dir/publisher.cpp.o -c /home/ubuntu/git/RS2_Group_18/project/cpp/publisher.cpp",
+  "file": "/home/ubuntu/git/RS2_Group_18/project/cpp/publisher.cpp",
+  "output": "CMakeFiles/cpp.dir/publisher.cpp.o"
 },
 {
   "directory": "/home/ubuntu/git/RS2_Group_18/project/cpp/build",
@@ -16,5 +16,11 @@
   "command": "/usr/bin/c++   -g -o CMakeFiles/cpp.dir/greedy.cpp.o -c /home/ubuntu/git/RS2_Group_18/project/cpp/greedy.cpp",
   "file": "/home/ubuntu/git/RS2_Group_18/project/cpp/greedy.cpp",
   "output": "CMakeFiles/cpp.dir/greedy.cpp.o"
+},
+{
+  "directory": "/home/ubuntu/git/RS2_Group_18/project/cpp/build",
+  "command": "/usr/bin/c++   -g -o CMakeFiles/cpp.dir/processor.cpp.o -c /home/ubuntu/git/RS2_Group_18/project/cpp/processor.cpp",
+  "file": "/home/ubuntu/git/RS2_Group_18/project/cpp/processor.cpp",
+  "output": "CMakeFiles/cpp.dir/processor.cpp.o"
 }
 ]
