@@ -12,6 +12,7 @@ find_package(sensor_msgs REQUIRED)
 find_package(geometry_msgs REQUIRED)
 find_package(OpenCV REQUIRED)
 find_package(Eigen3 REQUIRED)
+find_package(visualization_msgs)
 
 add_executable(aruco_localisation src/aruco_localisation.cpp)
 target_include_directories(aruco_localisation PUBLIC
@@ -21,7 +22,7 @@ target_include_directories(aruco_localisation PUBLIC
 target_compile_features(aruco_localisation PUBLIC c_std_99 cxx_std_17)  # Require C99 and C++17
 
 # link against the dependencies
-ament_target_dependencies(aruco_localisation rclcpp sensor_msgs geometry_msgs)
+ament_target_dependencies(aruco_localisation rclcpp sensor_msgs geometry_msgs visualization_msgs)
 target_link_libraries(aruco_localisation ${OpenCV_LIBS})
 
 install(TARGETS aruco_localisation
