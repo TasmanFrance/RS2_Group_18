@@ -10,10 +10,11 @@
 
 #include <opencv2/opencv.hpp>
 #include <opencv2/aruco.hpp>
-#include <opencv2/aruco/charuco.hpp>
 #include <opencv2/core.hpp>
 #include <opencv2/core/eigen.hpp>
 #include <opencv2/calib3d.hpp>
+
+// #include <moveit/planning_interface/planning_in terface.h>
 
 class ArucoLocalisationNode : public rclcpp::Node
 {
@@ -46,20 +47,20 @@ public:
 				// Update camera matrix and distortion coefficients
 				updateCameraCalibration(msg);
 			});
-		marker_publisher_ = this->create_publisher<geometry_msgs::msg::PoseStamped>(
+		marker_publisher_ = this->create_publisher<geometry_msgs::msg::PoseArray>(
 			"detected_markers",
 			10);
-		// center_marker_publisher_ = this->create_publisher<geometry_msgs::msg::PoseStamped>(
-		// 	"centerpage_marker",
-		// 	10);
+		center_marker_publisher_ = this->create_publisher<geometry_msgs::msg::PoseStamped>(
+			"centerpage_marker",
+			10);
 	}
 
 private:
 	rclcpp::Subscription<sensor_msgs::msg::Image>::SharedPtr depth_subscriber_;
 	rclcpp::Subscription<sensor_msgs::msg::Image>::SharedPtr color_subscriber_;
 	rclcpp::Subscription<sensor_msgs::msg::CameraInfo>::SharedPtr camera_info_subscriber_;
-	rclcpp::Publisher<geometry_msgs::msg::PoseStamped>::SharedPtr marker_publisher_;
-	// rclcpp::Publisher<geometry_msgs::msg::PoseStamped>::SharedPtr center_marker_publisher_;
+	rclcpp::Publisher<geometry_msgs::msg::PoseArray>::SharedPtr marker_publisher_;
+	rclcpp::Publisher<geometry_msgs::msg::PoseStamped>::SharedPtr center_marker_publisher_;
 
 	cv::Mat camera_matrix_;
 	cv::Mat distortion_coeffs_;
@@ -106,8 +107,6 @@ private:
 
 		distortion_coeffs_ = (cv::Mat_<double>(5, 1) << msg->d[0], msg->d[1], msg->d[2], msg->d[3], msg->d[4]);
 	}
-	//--------------------------------------------------------------------------
-	// TESTING IN PROGRESS
 	void processColorImage(const sensor_msgs::msg::Image::SharedPtr msg)
 	{
 		// Check if the image is in the expected format
@@ -129,68 +128,156 @@ private:
 		cv::Ptr<cv::aruco::DetectorParameters> parameters = cv::aruco::DetectorParameters::create();
 		parameters->cornerRefinementMethod = cv::aruco::CORNER_REFINE_SUBPIX;
 
-		// Create ChArUco board
-		cv::Ptr<cv::aruco::CharucoBoard> charuco_board = cv::aruco::CharucoBoard::create(5, 5, 0.032, 0.024, dictionary);
-
-		// Detect ChArUco markers
+		// Detect ArUco markers
 		std::vector<int> marker_ids;
-		std::vector<std::vector<cv::Point2f>> marker_corners, rejected_candidates;
-		cv::aruco::detectMarkers(gray_image, dictionary, marker_corners, marker_ids, parameters, rejected_candidates, camera_matrix_, distortion_coeffs_);
+		std::vector<std::vector<cv::Point2f>> marker_corners;
+		cv::aruco::detectMarkers(gray_image, dictionary, marker_corners, marker_ids, parameters, cv::noArray(), camera_matrix_, distortion_coeffs_);
 
-		// Check if markers are detected
-		if (marker_corners.empty() || marker_ids.empty())
+		if (marker_ids.empty() || marker_corners.empty())
 		{
-			RCLCPP_WARN(this->get_logger(), "No markers detected");
+			RCLCPP_WARN(this->get_logger(), "No markers ids or corners detected");
 			return;
 		}
-		
-		// Detect ChArUco board corners
-		std::vector<cv::Point2f> charuco_corners;
-		std::vector<int> charuco_ids;
-		cv::aruco::interpolateCornersCharuco(marker_corners, marker_ids, gray_image, charuco_board, charuco_corners, charuco_ids, camera_matrix_, distortion_coeffs_);
+		//---------------------------------------------------------------------------------------------------------------
+		// // Define the object points (3D coordinates of the marker corners in the marker's coordinate system)
+		// std::vector<cv::Point3f> object_points;
+		// for (unsigned long int i = 0; i < marker_ids.size(); ++i)
+		// {
+		// 	object_points.push_back(cv::Point3f(-marker_length / 2, -marker_length / 2, 0));
+		// 	object_points.push_back(cv::Point3f(marker_length / 2, -marker_length / 2, 0));
+		// 	object_points.push_back(cv::Point3f(marker_length / 2, marker_length / 2, 0));
+		// 	object_points.push_back(cv::Point3f(-marker_length / 2, marker_length / 2, 0));
+		// }
 
-		// Check if ChArUco corners are detected
-		if (charuco_corners.empty() || charuco_ids.empty())
-		{
-			RCLCPP_WARN(this->get_logger(), "No ChArUco corners detected");
-			return;
-		}
+		// // Convert the detected marker corners to a format suitable for solvePnP
+		// std::vector<cv::Point2f> image_points;
+		// for (size_t i = 0; i < marker_corners.size(); ++i)
+		// {
+		// 	for (size_t j = 0; j < marker_corners[i].size(); ++j)
+		// 	{
+		// 		image_points.push_back(marker_corners[i][j]);
+		// 	}
+		// }
 
-		// Estimate pose of ChArUco board
-		cv::Vec3d rvec, tvec;
-		bool pose_estimated = cv::aruco::estimatePoseCharucoBoard(charuco_corners, charuco_ids, charuco_board, camera_matrix_, distortion_coeffs_, rvec, tvec);
+		// // Estimate pose using solvePnP
+		// cv::Mat rvec, tvec;
+		// cv::solvePnP(object_points, image_points, camera_matrix_, distortion_coeffs_, rvec, tvec);
 
+		// // Convert rotation vector to quaternion
+		// cv::Mat rot_matrix;
+		// cv::Rodrigues(rvec, rot_matrix);
+
+		// // Convert rotation matrix to quaternion
+		// Eigen::Matrix3d rot_matrix_eigen;
+		// cv::cv2eigen(rot_matrix, rot_matrix_eigen);
+		// Eigen::Quaterniond quaternion(rot_matrix_eigen);
+
+		// // Publish detected markers and their poses
+		// auto pose_array_msg = std::make_shared<geometry_msgs::msg::PoseArray>();
+		// pose_array_msg->header = msg->header;
+
+		// for (size_t i = 0; i < marker_ids.size(); ++i)
+		// {
+		// 	geometry_msgs::msg::Pose pose;
+		// 	// Calculate offset to move the origin to the center of the marker
+		// 	cv::Vec3d marker_offset(0, 0, 0);
+		// 	// Apply offset to translation vector
+		// 	cv::Vec3d marker_center = cv::Vec3d(tvec) + marker_offset;
+		// 	pose.position.x = marker_center[0];
+		// 	pose.position.y = marker_center[1];
+		// 	pose.position.z = marker_center[2];
+
+		// 	pose.orientation.x = quaternion.x();
+		// 	pose.orientation.y = quaternion.y();
+		// 	pose.orientation.z = quaternion.z();
+		// 	pose.orientation.w = quaternion.w();
+
+		// 	pose_array_msg->poses.push_back(pose);
+		// }
+		// marker_publisher_->publish(*pose_array_msg);
+		//----------------------------------------------------------------------------------
+		// Estimate pose of detected markers using member variables
+		std::vector<cv::Vec3d> rvecs, tvecs;
+		// Publish detected markers and their poses
+		double marker_length = 0.024
+		;
+		cv::aruco::estimatePoseSingleMarkers(marker_corners, marker_length, camera_matrix_, distortion_coeffs_, rvecs, tvecs);
 		// Check if pose estimation succeeded
-		if (!pose_estimated)
+		if (rvecs.empty() || tvecs.empty())
 		{
 			RCLCPP_WARN(this->get_logger(), "Pose estimation failed");
 			return;
 		}
 
-		auto pose_stamped_msg = std::make_shared<geometry_msgs::msg::PoseStamped>();
-		pose_stamped_msg->header = msg->header;
+		auto pose_array_msg = std::make_shared<geometry_msgs::msg::PoseArray>();
+		pose_array_msg->header = msg->header;
 
-		// Apply offset to translation vector
-		cv::Vec3d marker_center = tvec;
-		pose_stamped_msg->pose.position.x = marker_center[0];
-		pose_stamped_msg->pose.position.y = marker_center[1];
-		pose_stamped_msg->pose.position.z = marker_center[2];
+		for (size_t i = 0; i < marker_ids.size(); ++i)
+		{
+			geometry_msgs::msg::Pose pose;
+			// Calculate offset to move the origin to the center of the marker
+			cv::Vec3d marker_offset(0, 0, 0);
+			// Apply offset to translation vector
+			cv::Vec3d marker_center = tvecs[i] + marker_offset;
+			pose.position.x = marker_center[0];
+			pose.position.y = marker_center[1];
+			pose.position.z = marker_center[2];
 
-		// Convert rotation vector to quaternion
-		cv::Mat rot_matrix;
-		cv::Rodrigues(rvec, rot_matrix);
+			// Convert rotation vector to quaternion
+			cv::Mat rot_matrix;
+			cv::Rodrigues(rvecs[i], rot_matrix);
 
-		// Convert rotation matrix to quaternion
-		Eigen::Matrix3d rot_matrix_eigen;
-		cv::cv2eigen(rot_matrix, rot_matrix_eigen);
-		Eigen::Quaterniond quaternion(rot_matrix_eigen);
+			// Convert rotation matrix to quaternion
+			Eigen::Matrix3d rot_matrix_eigen;
+			cv::cv2eigen(rot_matrix, rot_matrix_eigen);
+			Eigen::Quaterniond quaternion(rot_matrix_eigen);
 
-		pose_stamped_msg->pose.orientation.x = quaternion.x();
-		pose_stamped_msg->pose.orientation.y = quaternion.y();
-		pose_stamped_msg->pose.orientation.z = quaternion.z();
-		pose_stamped_msg->pose.orientation.w = quaternion.w();
+			pose.orientation.x = quaternion.x();
+			pose.orientation.y = quaternion.y();
+			pose.orientation.z = quaternion.z();
+			pose.orientation.w = quaternion.w();
 
-		marker_publisher_->publish(*pose_stamped_msg);
+			pose_array_msg->poses.push_back(pose);
+		}
+		marker_publisher_->publish(*pose_array_msg);
+		//----------------------------------------------------------------------------------
+		// Calculate to publish the centre pose (Send to Tasman)
+		cv::Vec3d avg_translation(0, 0, 0);
+		for (size_t i = 0; i < marker_ids.size(); ++i)
+		{
+			avg_translation += tvecs[i];
+		}
+		avg_translation /= static_cast<double>(marker_ids.size());
+
+		// Calculate the average orientation quaternion of all markers (assuming equal weights)
+		Eigen::Quaterniond avg_quaternion(1.0, 0.0, 0.0, 0.0); // Identity quaternion
+		for (size_t i = 0; i < marker_ids.size(); ++i)
+		{
+			cv::Mat rot_matrix;
+			cv::Rodrigues(rvecs[i], rot_matrix);
+			Eigen::Matrix3d rot_matrix_eigen;
+			cv::cv2eigen(rot_matrix, rot_matrix_eigen);
+			Eigen::Quaterniond quaternion(rot_matrix_eigen);
+			avg_quaternion = avg_quaternion.slerp(1.0 / (i + 1), quaternion); // Spherical linear interpolation
+		}
+
+		// Publish the average center pose
+		geometry_msgs::msg::Pose avg_center_pose;
+		avg_center_pose.position.x = avg_translation[0];
+		avg_center_pose.position.y = avg_translation[1];
+		avg_center_pose.position.z = avg_translation[2];
+		avg_center_pose.orientation.x = avg_quaternion.x();
+		avg_center_pose.orientation.y = avg_quaternion.y();
+		avg_center_pose.orientation.z = avg_quaternion.z();
+		avg_center_pose.orientation.w = avg_quaternion.w();
+
+		// Create a PoseStamped message to include a header
+		auto avg_center_pose_msg = std::make_shared<geometry_msgs::msg::PoseStamped>();
+		avg_center_pose_msg->header = msg->header;
+		avg_center_pose_msg->pose = avg_center_pose;
+
+		// Publish the average center pose
+		center_marker_publisher_->publish(*avg_center_pose_msg);
 	}
 };
 
