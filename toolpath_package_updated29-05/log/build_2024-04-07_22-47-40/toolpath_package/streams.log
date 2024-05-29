@@ -1,0 +1,51 @@
+[0.018s] Invoking command in '/home/ubuntu/ros2_ws/src/toolpath_package/build/toolpath_package': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/iron /usr/bin/cmake /home/ubuntu/ros2_ws/src/toolpath_package -DCMAKE_INSTALL_PREFIX=/home/ubuntu/ros2_ws/src/toolpath_package/install/toolpath_package
+[0.256s] -- The C compiler identification is GNU 11.4.0
+[0.384s] -- The CXX compiler identification is GNU 11.4.0
+[0.407s] -- Detecting C compiler ABI info
+[0.533s] -- Detecting C compiler ABI info - done
+[0.555s] -- Check for working C compiler: /usr/bin/cc - skipped
+[0.557s] -- Detecting C compile features
+[0.558s] -- Detecting C compile features - done
+[0.564s] -- Detecting CXX compiler ABI info
+[0.742s] -- Detecting CXX compiler ABI info - done
+[0.766s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[0.766s] -- Detecting CXX compile features
+[0.767s] -- Detecting CXX compile features - done
+[0.793s] -- Found ament_cmake: 2.0.4 (/opt/ros/iron/share/ament_cmake/cmake)
+[1.513s] -- Found Python3: /usr/bin/python3.10 (found version "3.10.12") found components: Interpreter
+[1.683s] -- Found ament_lint_auto: 0.14.3 (/opt/ros/iron/share/ament_lint_auto/cmake)
+[1.837s] -- Added test 'cppcheck' to perform static code analysis on C / C++ code
+[1.838s] -- Configured cppcheck include dirs: $<BUILD_INTERFACE:/home/ubuntu/ros2_ws/src/toolpath_package/include>
+[1.838s] -- Configured cppcheck exclude dirs and/or files: 
+[1.843s] -- Added test 'lint_cmake' to check CMake code style
+[1.860s] -- Added test 'uncrustify' to check C / C++ code style
+[1.860s] -- Configured uncrustify additional arguments: 
+[1.862s] -- Added test 'xmllint' to check XML markup files
+[1.866s] -- Configuring done (1.8s)
+[1.875s] -- Generating done (0.0s)
+[1.876s] -- Build files have been written to: /home/ubuntu/ros2_ws/src/toolpath_package/build/toolpath_package
+[1.883s] Invoked command in '/home/ubuntu/ros2_ws/src/toolpath_package/build/toolpath_package' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/iron /usr/bin/cmake /home/ubuntu/ros2_ws/src/toolpath_package -DCMAKE_INSTALL_PREFIX=/home/ubuntu/ros2_ws/src/toolpath_package/install/toolpath_package
+[1.886s] Invoking command in '/home/ubuntu/ros2_ws/src/toolpath_package/build/toolpath_package': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/iron /usr/bin/cmake --build /home/ubuntu/ros2_ws/src/toolpath_package/build/toolpath_package -- -j4 -l4
+[1.942s] [ 50%] [32mBuilding CXX object CMakeFiles/toolpath_node.dir/src/toolpath_node.cpp.o[0m
+[1.991s] [100%] [32m[1mLinking CXX executable toolpath_node[0m
+[2.068s] [100%] Built target toolpath_node
+[2.080s] Invoked command in '/home/ubuntu/ros2_ws/src/toolpath_package/build/toolpath_package' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/iron /usr/bin/cmake --build /home/ubuntu/ros2_ws/src/toolpath_package/build/toolpath_package -- -j4 -l4
+[2.138s] Invoking command in '/home/ubuntu/ros2_ws/src/toolpath_package/build/toolpath_package': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/iron /usr/bin/cmake --install /home/ubuntu/ros2_ws/src/toolpath_package/build/toolpath_package
+[2.143s] -- Install configuration: ""
+[2.144s] -- Installing: /home/ubuntu/ros2_ws/src/toolpath_package/install/toolpath_package/lib/toolpath_package/toolpath_node
+[2.145s] -- Installing: /home/ubuntu/ros2_ws/src/toolpath_package/install/toolpath_package/share/ament_index/resource_index/package_run_dependencies/toolpath_package
+[2.145s] -- Installing: /home/ubuntu/ros2_ws/src/toolpath_package/install/toolpath_package/share/ament_index/resource_index/parent_prefix_path/toolpath_package
+[2.146s] -- Installing: /home/ubuntu/ros2_ws/src/toolpath_package/install/toolpath_package/share/toolpath_package/environment/ament_prefix_path.sh
+[2.146s] -- Installing: /home/ubuntu/ros2_ws/src/toolpath_package/install/toolpath_package/share/toolpath_package/environment/ament_prefix_path.dsv
+[2.147s] -- Installing: /home/ubuntu/ros2_ws/src/toolpath_package/install/toolpath_package/share/toolpath_package/environment/path.sh
+[2.147s] -- Installing: /home/ubuntu/ros2_ws/src/toolpath_package/install/toolpath_package/share/toolpath_package/environment/path.dsv
+[2.147s] -- Installing: /home/ubuntu/ros2_ws/src/toolpath_package/install/toolpath_package/share/toolpath_package/local_setup.bash
+[2.148s] -- Installing: /home/ubuntu/ros2_ws/src/toolpath_package/install/toolpath_package/share/toolpath_package/local_setup.sh
+[2.148s] -- Installing: /home/ubuntu/ros2_ws/src/toolpath_package/install/toolpath_package/share/toolpath_package/local_setup.zsh
+[2.149s] -- Installing: /home/ubuntu/ros2_ws/src/toolpath_package/install/toolpath_package/share/toolpath_package/local_setup.dsv
+[2.149s] -- Installing: /home/ubuntu/ros2_ws/src/toolpath_package/install/toolpath_package/share/toolpath_package/package.dsv
+[2.150s] -- Installing: /home/ubuntu/ros2_ws/src/toolpath_package/install/toolpath_package/share/ament_index/resource_index/packages/toolpath_package
+[2.150s] -- Installing: /home/ubuntu/ros2_ws/src/toolpath_package/install/toolpath_package/share/toolpath_package/cmake/toolpath_packageConfig.cmake
+[2.150s] -- Installing: /home/ubuntu/ros2_ws/src/toolpath_package/install/toolpath_package/share/toolpath_package/cmake/toolpath_packageConfig-version.cmake
+[2.151s] -- Installing: /home/ubuntu/ros2_ws/src/toolpath_package/install/toolpath_package/share/toolpath_package/package.xml
+[2.154s] Invoked command in '/home/ubuntu/ros2_ws/src/toolpath_package/build/toolpath_package' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/iron /usr/bin/cmake --install /home/ubuntu/ros2_ws/src/toolpath_package/build/toolpath_package
