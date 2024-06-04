@@ -1,0 +1,136 @@
+[0.000000] (-) TimerEvent: {}
+[0.000324] (arm_controller) JobQueued: {'identifier': 'arm_controller', 'dependencies': OrderedDict()}
+[0.000654] (arm_controller) JobStarted: {'identifier': 'arm_controller'}
+[0.015289] (arm_controller) JobProgress: {'identifier': 'arm_controller', 'progress': 'cmake'}
+[0.015624] (arm_controller) Command: {'cmd': ['/usr/bin/cmake', '/home/tnas/ws_moveit2/src/arm_controller', '-DCMAKE_BUILD_TYPE=Debug', '-DCMAKE_INSTALL_PREFIX=/home/tnas/ws_moveit2/src/arm_controller/install/arm_controller'], 'cwd': '/home/tnas/ws_moveit2/src/arm_controller/build/arm_controller', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('LANGUAGE', 'en_AU:en'), ('USER', 'tnas'), ('XDG_SESSION_TYPE', 'wayland'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/tnas/ws_moveit2/install/pilz_industrial_motion_planner_testutils/lib:/home/tnas/ws_moveit2/install/pilz_industrial_motion_planner/lib:/home/tnas/ws_moveit2/install/moveit_visual_tools/lib:/home/tnas/ws_moveit2/install/moveit_task_constructor_visualization/lib:/home/tnas/ws_moveit2/install/moveit_task_constructor_demo/lib:/home/tnas/ws_moveit2/install/moveit_task_constructor_capabilities/lib:/home/tnas/ws_moveit2/install/moveit_task_constructor_core/lib:/home/tnas/ws_moveit2/install/moveit_ros_control_interface/lib:/home/tnas/ws_moveit2/install/moveit_simple_controller_manager/lib:/home/tnas/ws_moveit2/install/moveit_setup_assistant/lib:/home/tnas/ws_moveit2/install/moveit_setup_srdf_plugins/lib:/home/tnas/ws_moveit2/install/moveit_setup_core_plugins/lib:/home/tnas/ws_moveit2/install/moveit_setup_controllers/lib:/home/tnas/ws_moveit2/install/moveit_setup_app_plugins/lib:/home/tnas/ws_moveit2/install/moveit_setup_framework/lib:/home/tnas/ws_moveit2/install/moveit_servo/lib:/home/tnas/ws_moveit2/install/moveit_ros_visualization/lib:/home/tnas/ws_moveit2/install/moveit_hybrid_planning/lib:/home/tnas/ws_moveit2/install/moveit_ros_planning_interface/lib:/home/tnas/ws_moveit2/install/moveit_ros_benchmarks/lib:/home/tnas/ws_moveit2/install/moveit_ros_warehouse/lib:/home/tnas/ws_moveit2/install/moveit_ros_robot_interaction/lib:/home/tnas/ws_moveit2/install/moveit_ros_perception/lib:/home/tnas/ws_moveit2/install/moveit_ros_move_group/lib:/home/tnas/ws_moveit2/install/moveit_planners_ompl/lib:/home/tnas/ws_moveit2/install/moveit_ros_planning/lib:/home/tnas/ws_moveit2/install/moveit_ros_occupancy_map_monitor/lib:/home/tnas/ws_moveit2/install/moveit_resources_prbt_ikfast_manipulator_plugin/lib:/home/tnas/ws_moveit2/install/moveit_planners_chomp/lib:/home/tnas/ws_moveit2/install/moveit_kinematics/lib:/home/tnas/ws_moveit2/install/moveit_chomp_optimizer_adapter/lib:/home/tnas/ws_moveit2/install/chomp_motion_planner/lib:/home/tnas/ws_moveit2/install/moveit_core/lib:/home/tnas/ws_moveit2/install/srdfdom/lib:/home/tnas/ws_moveit2/install/rviz_marker_tools/lib:/home/tnas/ws_moveit2/install/rosparam_shortcuts/lib:/home/tnas/ws_moveit2/install/moveit_task_constructor_msgs/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/tnas'), ('OLDPWD', '/home/tnas/ws_moveit2/src'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('SYSTEMD_EXEC_PID', '3800'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('_colcon_cd_root', '/opt/ros/humble/'), ('IM_CONFIG_PHASE', '1'), ('WAYLAND_DISPLAY', 'wayland-0'), ('COLCON_PREFIX_PATH', '/home/tnas/ws_moveit2/install:/home/tnas/ros2_humble/ros2-linux/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'tnas'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'tnas'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/home/tnas/ws_moveit2/install/moveit_core/bin:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/tnas-ThinkCentre-M720q:@/tmp/.ICE-unix/1015,unix/tnas-ThinkCentre-M720q:/tmp/.ICE-unix/1015'), ('XDG_MENU_PREFIX', 'gnome-'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/b685dc83_9c23_4eea_8e97_242d6abd1278'), ('GNOME_SETUP_DISPLAY', ':1'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/.mutter-Xwaylandauth.ZQT7N2'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.137'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/home/tnas/ws_moveit2/install/ur_moveit:/home/tnas/ws_moveit2/install/selfie_ur_demo:/home/tnas/ws_moveit2/install/pilz_industrial_motion_planner_testutils:/home/tnas/ws_moveit2/install/moveit_runtime:/home/tnas/ws_moveit2/install/moveit2_tutorials:/home/tnas/ws_moveit2/install/moveit:/home/tnas/ws_moveit2/install/moveit_planners:/home/tnas/ws_moveit2/install/pilz_industrial_motion_planner:/home/tnas/ws_moveit2/install/moveit_visual_tools:/home/tnas/ws_moveit2/install/moveit_task_constructor_visualization:/home/tnas/ws_moveit2/install/moveit_task_constructor_demo:/home/tnas/ws_moveit2/install/moveit_task_constructor_capabilities:/home/tnas/ws_moveit2/install/moveit_task_constructor_core:/home/tnas/ws_moveit2/install/moveit_ros_control_interface:/home/tnas/ws_moveit2/install/moveit_plugins:/home/tnas/ws_moveit2/install/moveit_simple_controller_manager:/home/tnas/ws_moveit2/install/moveit_setup_assistant:/home/tnas/ws_moveit2/install/moveit_setup_srdf_plugins:/home/tnas/ws_moveit2/install/moveit_setup_core_plugins:/home/tnas/ws_moveit2/install/moveit_setup_controllers:/home/tnas/ws_moveit2/install/moveit_setup_app_plugins:/home/tnas/ws_moveit2/install/moveit_setup_framework:/home/tnas/ws_moveit2/install/moveit_servo:/home/tnas/ws_moveit2/install/moveit_ros:/home/tnas/ws_moveit2/install/moveit_ros_visualization:/home/tnas/ws_moveit2/install/moveit_hybrid_planning:/home/tnas/ws_moveit2/install/hello_moveit:/home/tnas/ws_moveit2/install/moveit_ros_planning_interface:/home/tnas/ws_moveit2/install/moveit_ros_benchmarks:/home/tnas/ws_moveit2/install/moveit_ros_warehouse:/home/tnas/ws_moveit2/install/moveit_ros_robot_interaction:/home/tnas/ws_moveit2/install/moveit_ros_perception:/home/tnas/ws_moveit2/install/moveit_resources_prbt_pg70_support:/home/tnas/ws_moveit2/install/moveit_resources_prbt_moveit_config:/home/tnas/ws_moveit2/install/moveit_ros_move_group:/home/tnas/ws_moveit2/install/moveit_planners_ompl:/home/tnas/ws_moveit2/install/moveit_ros_planning:/home/tnas/ws_moveit2/install/moveit_ros_occupancy_map_monitor:/home/tnas/ws_moveit2/install/moveit_resources_prbt_ikfast_manipulator_plugin:/home/tnas/ws_moveit2/install/moveit_planners_chomp:/home/tnas/ws_moveit2/install/moveit_kinematics:/home/tnas/ws_moveit2/install/moveit_chomp_optimizer_adapter:/home/tnas/ws_moveit2/install/chomp_motion_planner:/home/tnas/ws_moveit2/install/moveit_core:/home/tnas/ws_moveit2/install/moveit_configs_utils:/home/tnas/ws_moveit2/install/srdfdom:/home/tnas/ws_moveit2/install/rviz_marker_tools:/home/tnas/ws_moveit2/install/rosparam_shortcuts:/home/tnas/ws_moveit2/install/moveit_task_constructor_msgs:/home/tnas/ws_moveit2/install/moveit_resources_prbt_support:/home/tnas/ws_moveit2/install/moveit_resources:/home/tnas/ws_moveit2/install/moveit_resources_pr2_description:/home/tnas/ws_moveit2/install/moveit_resources_panda_moveit_config:/home/tnas/ws_moveit2/install/moveit_resources_panda_description:/home/tnas/ws_moveit2/install/moveit_resources_fanuc_moveit_config:/home/tnas/ws_moveit2/install/moveit_resources_fanuc_description:/home/tnas/ws_moveit2/install/moveit_common:/home/tnas/ws_moveit2/install/launch_param_builder:/home/tnas/ros2_humble/ros2-linux/install/my_package:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/tnas/ws_moveit2/src/arm_controller/build/arm_controller'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/tnas/ws_moveit2/install/moveit_configs_utils/lib/python3.10/site-packages:/home/tnas/ws_moveit2/install/srdfdom/local/lib/python3.10/dist-packages:/home/tnas/ws_moveit2/install/moveit_task_constructor_msgs/local/lib/python3.10/dist-packages:/home/tnas/ws_moveit2/install/launch_param_builder/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/home/tnas/ws_moveit2/install/ur_moveit:/home/tnas/ws_moveit2/install/selfie_ur_demo:/home/tnas/ws_moveit2/install/pilz_industrial_motion_planner_testutils:/home/tnas/ws_moveit2/install/moveit_runtime:/home/tnas/ws_moveit2/install/moveit2_tutorials:/home/tnas/ws_moveit2/install/moveit:/home/tnas/ws_moveit2/install/moveit_planners:/home/tnas/ws_moveit2/install/pilz_industrial_motion_planner:/home/tnas/ws_moveit2/install/moveit_visual_tools:/home/tnas/ws_moveit2/install/moveit_task_constructor_visualization:/home/tnas/ws_moveit2/install/moveit_task_constructor_demo:/home/tnas/ws_moveit2/install/moveit_task_constructor_capabilities:/home/tnas/ws_moveit2/install/moveit_task_constructor_core:/home/tnas/ws_moveit2/install/moveit_ros_control_interface:/home/tnas/ws_moveit2/install/moveit_plugins:/home/tnas/ws_moveit2/install/moveit_simple_controller_manager:/home/tnas/ws_moveit2/install/moveit_setup_assistant:/home/tnas/ws_moveit2/install/moveit_setup_srdf_plugins:/home/tnas/ws_moveit2/install/moveit_setup_core_plugins:/home/tnas/ws_moveit2/install/moveit_setup_controllers:/home/tnas/ws_moveit2/install/moveit_setup_app_plugins:/home/tnas/ws_moveit2/install/moveit_setup_framework:/home/tnas/ws_moveit2/install/moveit_servo:/home/tnas/ws_moveit2/install/moveit_ros:/home/tnas/ws_moveit2/install/moveit_ros_visualization:/home/tnas/ws_moveit2/install/moveit_hybrid_planning:/home/tnas/ws_moveit2/install/hello_moveit:/home/tnas/ws_moveit2/install/moveit_ros_planning_interface:/home/tnas/ws_moveit2/install/moveit_ros_benchmarks:/home/tnas/ws_moveit2/install/moveit_ros_warehouse:/home/tnas/ws_moveit2/install/moveit_ros_robot_interaction:/home/tnas/ws_moveit2/install/moveit_ros_perception:/home/tnas/ws_moveit2/install/moveit_resources_prbt_pg70_support:/home/tnas/ws_moveit2/install/moveit_resources_prbt_moveit_config:/home/tnas/ws_moveit2/install/moveit_ros_move_group:/home/tnas/ws_moveit2/install/moveit_planners_ompl:/home/tnas/ws_moveit2/install/moveit_ros_planning:/home/tnas/ws_moveit2/install/moveit_ros_occupancy_map_monitor:/home/tnas/ws_moveit2/install/moveit_resources_prbt_ikfast_manipulator_plugin:/home/tnas/ws_moveit2/install/moveit_planners_chomp:/home/tnas/ws_moveit2/install/moveit_kinematics:/home/tnas/ws_moveit2/install/moveit_chomp_optimizer_adapter:/home/tnas/ws_moveit2/install/chomp_motion_planner:/home/tnas/ws_moveit2/install/moveit_core:/home/tnas/ws_moveit2/install/srdfdom:/home/tnas/ws_moveit2/install/rviz_marker_tools:/home/tnas/ws_moveit2/install/rosparam_shortcuts:/home/tnas/ws_moveit2/install/moveit_task_constructor_msgs:/home/tnas/ws_moveit2/install/moveit_resources_prbt_support:/home/tnas/ws_moveit2/install/moveit_resources:/home/tnas/ws_moveit2/install/moveit_resources_pr2_description:/home/tnas/ws_moveit2/install/moveit_resources_panda_moveit_config:/home/tnas/ws_moveit2/install/moveit_resources_panda_description:/home/tnas/ws_moveit2/install/moveit_resources_fanuc_moveit_config:/home/tnas/ws_moveit2/install/moveit_resources_fanuc_description:/home/tnas/ws_moveit2/install/moveit_common:/home/tnas/ros2_humble/ros2-linux/install/my_package:/home/tnas/ws_moveit2/install/moveit_configs_utils:/home/tnas/ws_moveit2/install/launch_param_builder:/opt/ros/humble')]), 'shell': False}
+[0.100067] (-) TimerEvent: {}
+[0.106804] (arm_controller) StdoutLine: {'line': b'-- The C compiler identification is GNU 11.4.0\n'}
+[0.171249] (arm_controller) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 11.4.0\n'}
+[0.180624] (arm_controller) StdoutLine: {'line': b'-- Detecting C compiler ABI info\n'}
+[0.200183] (-) TimerEvent: {}
+[0.274445] (arm_controller) StdoutLine: {'line': b'-- Detecting C compiler ABI info - done\n'}
+[0.281748] (arm_controller) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc - skipped\n'}
+[0.283262] (arm_controller) StdoutLine: {'line': b'-- Detecting C compile features\n'}
+[0.283742] (arm_controller) StdoutLine: {'line': b'-- Detecting C compile features - done\n'}
+[0.286818] (arm_controller) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[0.300301] (-) TimerEvent: {}
+[0.392245] (arm_controller) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[0.399811] (arm_controller) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++ - skipped\n'}
+[0.400082] (arm_controller) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[0.400360] (-) TimerEvent: {}
+[0.400555] (arm_controller) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[0.411608] (arm_controller) StdoutLine: {'line': b'-- Found ament_cmake: 1.3.8 (/opt/ros/humble/share/ament_cmake/cmake)\n'}
+[0.500490] (-) TimerEvent: {}
+[0.594176] (arm_controller) StdoutLine: {'line': b'-- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter \n'}
+[0.600600] (-) TimerEvent: {}
+[0.700887] (-) TimerEvent: {}
+[0.785921] (arm_controller) StdoutLine: {'line': b'-- Found moveit_ros_planning_interface: 2.5.5 (/home/tnas/ws_moveit2/install/moveit_ros_planning_interface/share/moveit_ros_planning_interface/cmake)\n'}
+[0.800996] (-) TimerEvent: {}
+[0.901220] (-) TimerEvent: {}
+[1.001475] (-) TimerEvent: {}
+[1.064023] (arm_controller) StdoutLine: {'line': b'-- Found Boost: /usr/lib/x86_64-linux-gnu/cmake/Boost-1.74.0/BoostConfig.cmake (found version "1.74.0") found components: date_time filesystem program_options system thread \n'}
+[1.101575] (-) TimerEvent: {}
+[1.193497] (arm_controller) StdoutLine: {'line': b'-- Found rosidl_generator_c: 3.1.5 (/opt/ros/humble/share/rosidl_generator_c/cmake)\n'}
+[1.201678] (-) TimerEvent: {}
+[1.212352] (arm_controller) StdoutLine: {'line': b'-- Found rosidl_adapter: 3.1.5 (/opt/ros/humble/share/rosidl_adapter/cmake)\n'}
+[1.234985] (arm_controller) StdoutLine: {'line': b'-- Found rosidl_generator_cpp: 3.1.5 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)\n'}
+[1.265744] (arm_controller) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[1.301784] (-) TimerEvent: {}
+[1.308634] (arm_controller) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[1.402001] (-) TimerEvent: {}
+[1.502310] (-) TimerEvent: {}
+[1.602583] (-) TimerEvent: {}
+[1.702912] (-) TimerEvent: {}
+[1.803205] (-) TimerEvent: {}
+[1.903474] (-) TimerEvent: {}
+[2.003765] (-) TimerEvent: {}
+[2.104059] (-) TimerEvent: {}
+[2.204364] (-) TimerEvent: {}
+[2.304775] (-) TimerEvent: {}
+[2.382767] (arm_controller) StdoutLine: {'line': b'-- Found Boost: /usr/lib/x86_64-linux-gnu/cmake/Boost-1.74.0/BoostConfig.cmake (found version "1.74.0") found components: chrono date_time filesystem iostreams program_options regex serialization system thread \n'}
+[2.404903] (-) TimerEvent: {}
+[2.505120] (-) TimerEvent: {}
+[2.517115] (arm_controller) StdoutLine: {'line': b'-- Found parameter_traits: 0.3.8 (/opt/ros/humble/share/parameter_traits/cmake)\n'}
+[2.605237] (-) TimerEvent: {}
+[2.659803] (arm_controller) StdoutLine: {'line': b'-- Found rmw_implementation_cmake: 6.1.1 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)\n'}
+[2.671593] (arm_controller) StdoutLine: {'line': b'-- Found rmw_fastrtps_cpp: 6.2.6 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)\n'}
+[2.705383] (-) TimerEvent: {}
+[2.805641] (-) TimerEvent: {}
+[2.854007] (arm_controller) StdoutLine: {'line': b'-- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "3.0.2")  \n'}
+[2.888568] (arm_controller) StdoutLine: {'line': b'-- Found FastRTPS: /opt/ros/humble/include  \n'}
+[2.905750] (-) TimerEvent: {}
+[2.956295] (arm_controller) StdoutLine: {'line': b"-- Using RMW implementation 'rmw_fastrtps_cpp' as default\n"}
+[2.987231] (arm_controller) StdoutLine: {'line': b'-- Found Threads: TRUE  \n'}
+[3.005878] (-) TimerEvent: {}
+[3.106145] (-) TimerEvent: {}
+[3.180058] (arm_controller) StdoutLine: {'line': b'-- Found Eigen3: TRUE (found version "3.4.0") \n'}
+[3.189891] (arm_controller) StdoutLine: {'line': b'-- Found rclcpp_lifecycle: 16.0.8 (/opt/ros/humble/share/rclcpp_lifecycle/cmake)\n'}
+[3.206261] (-) TimerEvent: {}
+[3.260122] (arm_controller) StdoutLine: {'line': b'-- Found Boost: /usr/lib/x86_64-linux-gnu/cmake/Boost-1.74.0/BoostConfig.cmake (found version "1.74.0") found components: filesystem \n'}
+[3.306432] (-) TimerEvent: {}
+[3.406701] (-) TimerEvent: {}
+[3.434344] (arm_controller) StdoutLine: {'line': b'-- library: /usr/lib/x86_64-linux-gnu/libcurl.so\n'}
+[3.506821] (-) TimerEvent: {}
+[3.607088] (-) TimerEvent: {}
+[3.632887] (arm_controller) StdoutLine: {'line': b'-- Ensuring Eigen3 include directory is part of orocos-kdl CMake target\n'}
+[3.707208] (-) TimerEvent: {}
+[3.807476] (-) TimerEvent: {}
+[3.907758] (-) TimerEvent: {}
+[4.008032] (-) TimerEvent: {}
+[4.108306] (-) TimerEvent: {}
+[4.208590] (-) TimerEvent: {}
+[4.308909] (-) TimerEvent: {}
+[4.380672] (arm_controller) StdoutLine: {'line': b'-- Found Boost: /usr/lib/x86_64-linux-gnu/cmake/Boost-1.74.0/BoostConfig.cmake (found version "1.74.0") found components: system filesystem date_time program_options thread chrono \n'}
+[4.408980] (-) TimerEvent: {}
+[4.509278] (-) TimerEvent: {}
+[4.609540] (-) TimerEvent: {}
+[4.709858] (-) TimerEvent: {}
+[4.810164] (-) TimerEvent: {}
+[4.910435] (-) TimerEvent: {}
+[5.010724] (-) TimerEvent: {}
+[5.030384] (arm_controller) StdoutLine: {'line': b'-- Found Boost: /usr/lib/x86_64-linux-gnu/cmake/Boost-1.74.0/BoostConfig.cmake (found version "1.74.0") found components: thread system filesystem regex date_time program_options \n'}
+[5.110880] (-) TimerEvent: {}
+[5.211202] (-) TimerEvent: {}
+[5.311535] (-) TimerEvent: {}
+[5.326097] (arm_controller) StdoutLine: {'line': b'-- Found Boost: /usr/lib/x86_64-linux-gnu/cmake/Boost-1.74.0/BoostConfig.cmake (found version "1.74.0") found components: system filesystem date_time program_options thread \n'}
+[5.411623] (-) TimerEvent: {}
+[5.511917] (-) TimerEvent: {}
+[5.612219] (-) TimerEvent: {}
+[5.712541] (-) TimerEvent: {}
+[5.812851] (-) TimerEvent: {}
+[5.842814] (arm_controller) StdoutLine: {'line': b'-- Found ament_lint_auto: 0.12.10 (/opt/ros/humble/share/ament_lint_auto/cmake)\n'}
+[5.912990] (-) TimerEvent: {}
+[5.999220] (arm_controller) StdoutLine: {'line': b"-- Added test 'cppcheck' to perform static code analysis on C / C++ code\n"}
+[5.999511] (arm_controller) StdoutLine: {'line': b'-- Configured cppcheck include dirs: $<BUILD_INTERFACE:/home/tnas/ws_moveit2/src/arm_controller/include>\n'}
+[5.999613] (arm_controller) StdoutLine: {'line': b'-- Configured cppcheck exclude dirs and/or files: \n'}
+[6.011499] (arm_controller) StdoutLine: {'line': b"-- Added test 'lint_cmake' to check CMake code style\n"}
+[6.013080] (-) TimerEvent: {}
+[6.045432] (arm_controller) StdoutLine: {'line': b"-- Added test 'uncrustify' to check C / C++ code style\n"}
+[6.045565] (arm_controller) StdoutLine: {'line': b'-- Configured uncrustify additional arguments: \n'}
+[6.051090] (arm_controller) StdoutLine: {'line': b"-- Added test 'xmllint' to check XML markup files\n"}
+[6.054683] (arm_controller) StdoutLine: {'line': b'-- Configuring done\n'}
+[6.066773] (arm_controller) StderrLine: {'line': b'\x1b[31mCMake Error at CMakeLists.txt:22 (add_dependencies):\n'}
+[6.066950] (arm_controller) StderrLine: {'line': b'  The dependency target "geometry_msgs" of target "arm_controller" does not\n'}
+[6.067018] (arm_controller) StderrLine: {'line': b'  exist.\n'}
+[6.067094] (arm_controller) StderrLine: {'line': b'\n'}
+[6.067154] (arm_controller) StderrLine: {'line': b'\x1b[0m\n'}
+[6.067211] (arm_controller) StderrLine: {'line': b'\x1b[31mCMake Error at CMakeLists.txt:22 (add_dependencies):\n'}
+[6.067309] (arm_controller) StderrLine: {'line': b'  The dependency target "moveit_ros_planning_interface" of target\n'}
+[6.067365] (arm_controller) StderrLine: {'line': b'  "arm_controller" does not exist.\n'}
+[6.067420] (arm_controller) StderrLine: {'line': b'\n'}
+[6.067490] (arm_controller) StderrLine: {'line': b'\x1b[0m\n'}
+[6.067547] (arm_controller) StderrLine: {'line': b'\x1b[31mCMake Error at CMakeLists.txt:28 (add_dependencies):\n'}
+[6.067604] (arm_controller) StderrLine: {'line': b'  The dependency target "geometry_msgs" of target "interface_node" does not\n'}
+[6.067660] (arm_controller) StderrLine: {'line': b'  exist.\n'}
+[6.067716] (arm_controller) StderrLine: {'line': b'\n'}
+[6.067772] (arm_controller) StderrLine: {'line': b'\x1b[0m\n'}
+[6.067828] (arm_controller) StderrLine: {'line': b'\x1b[31mCMake Error at CMakeLists.txt:28 (add_dependencies):\n'}
+[6.067892] (arm_controller) StderrLine: {'line': b'  The dependency target "rclcpp" of target "interface_node" does not exist.\n'}
+[6.067949] (arm_controller) StderrLine: {'line': b'\n'}
+[6.068005] (arm_controller) StderrLine: {'line': b'\x1b[0m\n'}
+[6.090701] (arm_controller) StdoutLine: {'line': b'-- Generating done\n'}
+[6.092843] (arm_controller) StderrLine: {'line': b'\x1b[0mCMake Generate step failed.  Build files cannot be regenerated correctly.\x1b[0m\n'}
+[6.104717] (arm_controller) CommandEnded: {'returncode': 1}
+[6.113183] (-) TimerEvent: {}
+[6.128998] (arm_controller) JobEnded: {'identifier': 'arm_controller', 'rc': 1}
+[6.129673] (-) EventReactorShutdown: {}

@@ -1,0 +1,18 @@
+[31mCMake Error at CMakeLists.txt:35 (add_executable):
+  add_executable cannot create target "arm_controller" because another target
+  with the same name already exists.  The existing target is a static library
+  created in source directory "/home/tnas/ws_moveit2/src/arm_controller".
+  See documentation for policy CMP0002 for more details.
+
+[0m
+[31mCMake Error at CMakeLists.txt:36 (target_include_directories):
+  Cannot specify include directories for target "selfie_ur_demo" which is not
+  built by this project.
+
+[0m
+[31mCMake Error at /opt/ros/humble/share/ament_cmake_target_dependencies/cmake/ament_target_dependencies.cmake:42 (message):
+  ament_target_dependencies() the first argument must be a valid target name
+Call Stack (most recent call first):
+  CMakeLists.txt:47 (ament_target_dependencies)
+
+[0m

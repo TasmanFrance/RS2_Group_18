@@ -1,0 +1,42 @@
+[0.018s] Invoking command in '/home/tnas/ws_moveit2/src/arm_controller/build/arm_controller': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/tnas/ws_moveit2/install/moveit_configs_utils:/home/tnas/ws_moveit2/install/launch_param_builder:/opt/ros/humble /usr/bin/cmake /home/tnas/ws_moveit2/src/arm_controller -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=/home/tnas/ws_moveit2/src/arm_controller/install/arm_controller
+[0.035s] -- Found ament_cmake: 1.3.8 (/opt/ros/humble/share/ament_cmake/cmake)
+[0.163s] -- Found moveit_ros_planning_interface: 2.5.5 (/home/tnas/ws_moveit2/install/moveit_ros_planning_interface/share/moveit_ros_planning_interface/cmake)
+[0.174s] -- Found Boost: /usr/lib/x86_64-linux-gnu/cmake/Boost-1.74.0/BoostConfig.cmake (found version "1.74.0") found components: date_time filesystem program_options system thread 
+[0.204s] -- Found rosidl_generator_c: 3.1.5 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+[0.206s] -- Found rosidl_adapter: 3.1.5 (/opt/ros/humble/share/rosidl_adapter/cmake)
+[0.212s] -- Found rosidl_generator_cpp: 3.1.5 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+[0.225s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.244s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[1.184s] -- Found Boost: /usr/lib/x86_64-linux-gnu/cmake/Boost-1.74.0/BoostConfig.cmake (found version "1.74.0") found components: chrono date_time filesystem iostreams program_options regex serialization system thread 
+[1.215s] -- Found parameter_traits: 0.3.8 (/opt/ros/humble/share/parameter_traits/cmake)
+[1.266s] -- Found rmw_implementation_cmake: 6.1.1 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)
+[1.269s] -- Found rmw_fastrtps_cpp: 6.2.6 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)
+[1.421s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[1.580s] -- Found rclcpp_lifecycle: 16.0.8 (/opt/ros/humble/share/rclcpp_lifecycle/cmake)
+[1.626s] -- Found Boost: /usr/lib/x86_64-linux-gnu/cmake/Boost-1.74.0/BoostConfig.cmake (found version "1.74.0") found components: filesystem 
+[1.675s] -- library: /usr/lib/x86_64-linux-gnu/libcurl.so
+[1.836s] -- Ensuring Eigen3 include directory is part of orocos-kdl CMake target
+[2.407s] -- Found Boost: /usr/lib/x86_64-linux-gnu/cmake/Boost-1.74.0/BoostConfig.cmake (found version "1.74.0") found components: system filesystem date_time program_options thread chrono 
+[3.030s] -- Found Boost: /usr/lib/x86_64-linux-gnu/cmake/Boost-1.74.0/BoostConfig.cmake (found version "1.74.0") found components: thread system filesystem regex date_time program_options 
+[3.314s] -- Found Boost: /usr/lib/x86_64-linux-gnu/cmake/Boost-1.74.0/BoostConfig.cmake (found version "1.74.0") found components: system filesystem date_time program_options thread 
+[3.814s] [31mCMake Error at CMakeLists.txt:35 (add_executable):
+[3.814s]   add_executable cannot create target "arm_controller" because another target
+[3.814s]   with the same name already exists.  The existing target is a static library
+[3.814s]   created in source directory "/home/tnas/ws_moveit2/src/arm_controller".
+[3.814s]   See documentation for policy CMP0002 for more details.
+[3.814s] 
+[3.815s] [0m
+[3.815s] [31mCMake Error at CMakeLists.txt:36 (target_include_directories):
+[3.815s]   Cannot specify include directories for target "selfie_ur_demo" which is not
+[3.815s]   built by this project.
+[3.815s] 
+[3.815s] [0m
+[3.815s] [31mCMake Error at /opt/ros/humble/share/ament_cmake_target_dependencies/cmake/ament_target_dependencies.cmake:42 (message):
+[3.815s]   ament_target_dependencies() the first argument must be a valid target name
+[3.815s] Call Stack (most recent call first):
+[3.815s]   CMakeLists.txt:47 (ament_target_dependencies)
+[3.815s] 
+[3.815s] [0m
+[3.815s] -- Configuring incomplete, errors occurred!
+[3.815s] See also "/home/tnas/ws_moveit2/src/arm_controller/build/arm_controller/CMakeFiles/CMakeOutput.log".
+[3.823s] Invoked command in '/home/tnas/ws_moveit2/src/arm_controller/build/arm_controller' returned '1': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/tnas/ws_moveit2/install/moveit_configs_utils:/home/tnas/ws_moveit2/install/launch_param_builder:/opt/ros/humble /usr/bin/cmake /home/tnas/ws_moveit2/src/arm_controller -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=/home/tnas/ws_moveit2/src/arm_controller/install/arm_controller

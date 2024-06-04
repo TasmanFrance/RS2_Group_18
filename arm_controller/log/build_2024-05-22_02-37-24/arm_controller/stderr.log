@@ -1,0 +1,20 @@
+[31mCMake Error at CMakeLists.txt:22 (add_dependencies):
+  The dependency target "geometry_msgs" of target "arm_controller" does not
+  exist.
+
+[0m
+[31mCMake Error at CMakeLists.txt:22 (add_dependencies):
+  The dependency target "moveit_ros_planning_interface" of target
+  "arm_controller" does not exist.
+
+[0m
+[31mCMake Error at CMakeLists.txt:28 (add_dependencies):
+  The dependency target "geometry_msgs" of target "interface_node" does not
+  exist.
+
+[0m
+[31mCMake Error at CMakeLists.txt:28 (add_dependencies):
+  The dependency target "rclcpp" of target "interface_node" does not exist.
+
+[0m
+[0mCMake Generate step failed.  Build files cannot be regenerated correctly.[0m
