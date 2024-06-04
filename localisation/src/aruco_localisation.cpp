@@ -82,18 +82,14 @@ private:
 		// Convert sensor_msgs::Image to cv::Mat
 		cv::Mat depth_image(msg->height, msg->width, CV_16UC1, const_cast<unsigned char *>(msg->data.data()), msg->step);
 
-		// Apply Gaussian blur to the depth image
-		cv::Mat blurred_depth_image;
-		cv::GaussianBlur(depth_image, blurred_depth_image, cv::Size(5, 5), 0); // 5x5 Gaussian kernel, sigma=0 (auto-calculated based on kernel size)
-
-		// Apply median filtering to further reduce noise
-		cv::Mat denoised_depth_image;
-		cv::medianBlur(blurred_depth_image, denoised_depth_image, 5); // 5x5 median filter
+		// Apply median filter to the depth image
+		cv::Mat filtered_depth_image;
+		cv::medianBlur(depth_image, filtered_depth_image, 5); // 5 is the size of the median filter kernel
 
 		// Process depth map (e.g., find distances, detect objects, etc.)
 		// Example: find minimum and maximum depth values
 		double min_depth, max_depth;
-		cv::minMaxLoc(denoised_depth_image, &min_depth, &max_depth);
+		cv::minMaxLoc(filtered_depth_image, &min_depth, &max_depth);
 
 		// Publish the min and max depth values (as an example)
 		auto depth_range_msg = std::make_shared<std_msgs::msg::Float64MultiArray>();
@@ -138,17 +134,22 @@ private:
 		std::vector<std::vector<cv::Point2f>> marker_corners;
 		cv::aruco::detectMarkers(gray_image, dictionary, marker_corners, marker_ids, parameters, cv::noArray(), camera_matrix_, distortion_coeffs_);
 
-		if (marker_ids.empty() || marker_corners.empty())
+		if (marker_ids.empty())
 		{
-			RCLCPP_WARN(this->get_logger(), "No markers ids or corners detected");
+			RCLCPP_WARN(this->get_logger(), "No markers ids detected");
 			return;
 		}
-		
+
+		if (marker_corners.empty())
+		{
+			RCLCPP_WARN(this->get_logger(), "No corners detected");
+			return;
+		}
+
 		// Estimate pose of detected markers using member variables
 		std::vector<cv::Vec3d> rvecs, tvecs;
 		// Publish detected markers and their poses
-		double marker_length = 0.024
-		;
+		double marker_length = 0.018;
 		cv::aruco::estimatePoseSingleMarkers(marker_corners, marker_length, camera_matrix_, distortion_coeffs_, rvecs, tvecs);
 		// Check if pose estimation succeeded
 		if (rvecs.empty() || tvecs.empty())
