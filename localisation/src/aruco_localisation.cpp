@@ -146,6 +146,7 @@ private:
 			return;
 		}
 
+		
 		// Estimate pose of detected markers using member variables
 		std::vector<cv::Vec3d> rvecs, tvecs;
 		// Publish detected markers and their poses
@@ -199,7 +200,7 @@ private:
 			text_marker.action = visualization_msgs::msg::Marker::ADD;
 			text_marker.pose.position.x = marker_center[0];
 			text_marker.pose.position.y = marker_center[1];
-			text_marker.pose.position.z = marker_center[2] - 0.1; // Slightly above the marker
+			text_marker.pose.position.z = marker_center[2] - 0.025; // Slightly above the marker
 			text_marker.pose.orientation.w = 1.0;
 			text_marker.scale.z = 0.02; // Text height
 			text_marker.color.r = 1.0;
