@@ -7,8 +7,19 @@
 
 
 ArmInterface::ArmInterface() :
-Node("arm_Interface"), markerTolerance_(0.001)
+Node("arm_Interface"), markerTolerance_(0.001), canvasTolerancePos_(0.005), canvasTolerancePRY_(0.0628319)
 {
+    armState_ = armState::ARM_ST_INIT;
+    eeState_ = eeState::EE_ST_CAMERA;
+    canvas_.consistent = false;
+    canvas_.iterTotal = 0;
+    canvas_.centre.pose.position.x = 0.0;
+    canvas_.centre.pose.position.y = 0.0;
+    canvas_.centre.pose.position.z = 0.0;
+    canvas_.centre.pose.orientation.x = 0.0;
+    canvas_.centre.pose.orientation.y = 0.0;
+    canvas_.centre.pose.orientation.z = 0.0;
+    canvas_.centre.pose.orientation.w = 0.0;
     markerCount_ = 0;
     threadSleepSec_.store(100);
 
@@ -140,7 +151,51 @@ void ArmInterface::threadProcess()
             RCLCPP_INFO_STREAM(this->get_logger(), "draw path update recieved, adding marker(s)");
             drawPathUpdated_ = false;
 
-            
+            // try
+            // {
+            //     geometry_msgs::msg::PoseArray tfDrawPoses = poseArrayTransform("tool0", "world", drawPoses_, 0.01, 0.05);
+            //     geometry_msgs::msg::PoseArray upArray, downArray;
+
+            //     bool upFlag = false;
+            //     bool downFlag = false;
+            //     for(unsigned int i=0 ; i < drawPoses_.poses.size() ; i++)
+            //     {
+            //         RCLCPP_INFO_STREAM(this->get_logger(), "adding marker at pose x: " << drawPoses_.poses.at(i).position.x << " y: " << drawPoses_.poses.at(i).position.y << " z: " << drawPoses_.poses.at(i).position.z);
+            //         if(abs(drawPoses_.poses.at(i).position.z - 1.0) < 1e-6)
+            //         {
+            //             upFlag = true;
+            //             upArray.poses.push_back(tfDrawPoses.poses.at(i));
+            //         }
+            //         else
+            //         {
+            //             downFlag = true;
+            //             downArray.poses.push_back(tfDrawPoses.poses.at(i));
+            //         }
+            //     }
+            //     //catching final line
+            //     if(downFlag)
+            //     {
+            //         addMarker(downArray, markerType::TPP_PEN_DOWN);
+            //         RCLCPP_INFO_STREAM(this->get_logger(), "adding pen down marker");
+            //         downArray.poses.clear();
+            //         downFlag = false;
+            //     }
+            //     if(upFlag)
+            //     {
+            //         addMarker(upArray, markerType::TPP_PEN_UP);
+            //         RCLCPP_INFO_STREAM(this->get_logger(), "adding pen up marker");
+            //         upArray.poses.clear();
+            //         upFlag = false;
+            //     }
+            // }
+            // catch(const std::exception& except)
+            // {
+            //     RCLCPP_ERROR(this->get_logger(), "Canvas frame not ready: %s", except.what());
+            // }
+
+
+
+
             try
             {
                 geometry_msgs::msg::PoseArray tfDrawPoses = poseArrayTransform("tool0", "world", drawPoses_, 0.01, 0.05);
@@ -154,11 +209,25 @@ void ArmInterface::threadProcess()
                     if(abs(drawPoses_.poses.at(i).position.z - 1.0) < 1e-6)
                     {
                         upFlag = true;
+                        if(downFlag)
+                        {
+                            addMarker(downArray, markerType::TPP_PEN_DOWN);
+                            RCLCPP_INFO_STREAM(this->get_logger(), "adding pen down marker");
+                            downArray.poses.clear();
+                            downFlag = false;
+                        }
                         upArray.poses.push_back(tfDrawPoses.poses.at(i));
                     }
                     else
                     {
                         downFlag = true;
+                        if(upFlag)
+                        {
+                            addMarker(upArray, markerType::TPP_PEN_UP);
+                            RCLCPP_INFO_STREAM(this->get_logger(), "adding pen up marker");
+                            upArray.poses.clear();
+                            upFlag = false;
+                        }
                         downArray.poses.push_back(tfDrawPoses.poses.at(i));
                     }
                 }
@@ -182,98 +251,6 @@ void ArmInterface::threadProcess()
             {
                 RCLCPP_ERROR(this->get_logger(), "Canvas frame not ready: %s", except.what());
             }
-
-
-
-
-//             try
-//             {
-//                 geometry_msgs::msg::PoseArray tfDrawPoses = poseArrayTransform("tool0", "world", drawPoses_, 0.01, 0.05);
-//                 geometry_msgs::msg::PoseArray upArray, downArray;
-
-//                 bool upFlag = false;
-//                 bool downFlag = false;
-//                 for(unsigned int i=0 ; i < drawPoses_.poses.size() ; i++)
-//                 {
-//                     RCLCPP_INFO_STREAM(this->get_logger(), "adding marker at pose x: " << drawPoses_.poses.at(i).position.x << " y: " << drawPoses_.poses.at(i).position.y << " z: " << drawPoses_.poses.at(i).position.z);
-//                     if(abs(drawPoses_.poses.at(i).position.z - 1.0) < 1e-6)
-//                     {
-//                         upFlag = true;
-//                         if(downFlag)
-//                         {
-//                             addMarker(downArray, markerType::TPP_PEN_DOWN);
-//                             RCLCPP_INFO_STREAM(this->get_logger(), "adding pen down marker");
-//                             downArray.poses.clear();
-//                             downFlag = false;
-//                         }
-//                         upArray.poses.push_back(tfDrawPoses.poses.at(i));
-//                     }
-//                     else
-//                     {
-//                         downFlag = true;
-//                         if(upFlag)
-//                         {
-//                             addMarker(upArray, markerType::TPP_PEN_UP);
-//                             RCLCPP_INFO_STREAM(this->get_logger(), "adding pen up marker");
-//                             upArray.poses.clear();
-//                             upFlag = false;
-//                         }
-//                         downArray.poses.push_back(tfDrawPoses.poses.at(i));
-//                     }
-//                 }
-//                 //catching final line
-//                 if(downFlag)
-//                 {
-//                     addMarker(downArray, markerType::TPP_PEN_DOWN);
-//                     RCLCPP_INFO_STREAM(this->get_logger(), "adding pen down marker");
-//                     downArray.poses.clear();
-//                     downFlag = false;
-//                 }
-//                 if(upFlag)
-//                 {
-//                     addMarker(upArray, markerType::TPP_PEN_UP);
-//                     RCLCPP_INFO_STREAM(this->get_logger(), "adding pen up marker");
-//                     upArray.poses.clear();
-//                     upFlag = false;
-//                 }
-//             }
-//             catch(const std::exception& except)
-//             {
-//                 RCLCPP_ERROR(this->get_logger(), "Canvas frame not ready: %s", except.what());
-//             }
-
-            // std::for_each(drawPoses_.poses.begin(),drawPoses_.poses.end(),[&](auto pose){
-            //     RCLCPP_INFO_STREAM(this->get_logger(), "adding marker at pose x: " << pose.position.x << " y: " << pose.position.y << " z: " << pose.position.z);
-            //     //Convert from local to global
-            //     // pose.position.x += laserGlobalOffset.transform.translation.x;
-            //     // pose.position.y += laserGlobalOffset.transform.translation.y;
-
-            //     //Check if flagged as pen on canvas
-            //     // std::cout << "Check cone flag: " << pose.position.z << std::endl;
-            //     if(abs(pose.position.z - 1.0) < 1e-6)
-            //     {
-            //         ///???????????????????????????????????????????????????????????????????????????????CHANGE SO THAT IT IS z = 0 ACCOUNTING FOR ORIENTATION
-            //         // // std::cout << "Is cone!" << std::endl;
-            //         // unsigned int repeats = std::count_if(
-            //         //     cones_.begin(),cones_.end(),[&](auto cone){
-            //         //     return hypot(abs(cone.x-pose.position.x),abs(cone.y-pose.position.y)) < markerTolerance_;
-            //         // });
-            //         // if(repeats == 0)
-            //         // {
-            //             // std::cout << "Does not repeat" << std::endl;
-            //             //New cone identified, adding to vector
-            //             // pose.position.z = 0.0;
-            //             // cones_.push_back(pose);
-            //             RCLCPP_INFO_STREAM(this->get_logger(), "adding pen up marker");
-            //             addMarker(pose, markerType::TPP_PEN_UP);
-            //         // }
-            //     }
-            //     else
-            //     {
-            //         RCLCPP_INFO_STREAM(this->get_logger(), "adding pen down marker");
-            //         addMarker(pose, markerType::TPP_PEN_UP);
-            //     }
-            // });
         }
 
         if(canvasCentreUpdated_)
@@ -281,9 +258,50 @@ void ArmInterface::threadProcess()
             RCLCPP_INFO_STREAM(this->get_logger(), "canvas update recieved, adding marker");
             canvasCentreUpdated_ = false;
             geometry_msgs::msg::PoseStamped tfCanvasPose = poseStampedTransform("tool0", "world", canvasPose_);
-            geometry_msgs::msg::PoseArray tfCanvasPoseConv;
-            tfCanvasPoseConv.poses.push_back(tfCanvasPose.pose);
-            addMarker(tfCanvasPoseConv, markerType::LOCAL_CANVAS_CENTRE);
+            if(!(canvas_.consistent))
+            {
+                //Getting average of new value with local copy of canvas
+                geometry_msgs::msg::Pose localCanvas = canvas_.centre.pose;
+                unsigned int localIter = canvas_.iterTotal;
+
+                localCanvas.position.x = tfCanvasPose.pose.position.x + localCanvas.position.x * localIter;
+                localCanvas.position.y = tfCanvasPose.pose.position.y + localCanvas.position.y * localIter;
+                localCanvas.position.z = tfCanvasPose.pose.position.z + localCanvas.position.z * localIter;
+
+                localCanvas.orientation.x = tfCanvasPose.pose.orientation.x + localCanvas.orientation.x * localIter;
+                localCanvas.orientation.y = tfCanvasPose.pose.orientation.y + localCanvas.orientation.y * localIter;
+                localCanvas.orientation.z = tfCanvasPose.pose.orientation.z + localCanvas.orientation.z * localIter;
+                localCanvas.orientation.w = tfCanvasPose.pose.orientation.w + localCanvas.orientation.w * localIter;
+
+                localIter++;
+
+                localCanvas.position.x = localCanvas.position.x / localIter;
+                localCanvas.position.y = localCanvas.position.y / localIter;
+                localCanvas.position.z = localCanvas.position.z / localIter;
+                localCanvas.orientation.x = localCanvas.orientation.x / localIter;
+                localCanvas.orientation.y = localCanvas.orientation.y / localIter;
+                localCanvas.orientation.z = localCanvas.orientation.z / localIter;
+                localCanvas.orientation.w = localCanvas.orientation.w / localIter;
+
+                //Check if canvas centre deviates enough to be considered not fully localised
+                if((abs(localCanvas.position.x - canvas_.centre.pose.position.x) < canvasTolerancePos_) &&
+                (abs(localCanvas.position.y - canvas_.centre.pose.position.y) < canvasTolerancePos_) &&
+                (abs(localCanvas.position.z - canvas_.centre.pose.position.z) < canvasTolerancePos_) &&
+                (abs(localCanvas.orientation.x - canvas_.centre.pose.orientation.x) < canvasTolerancePRY_) &&
+                (abs(localCanvas.orientation.y - canvas_.centre.pose.orientation.y) < canvasTolerancePRY_) &&
+                (abs(localCanvas.orientation.z - canvas_.centre.pose.orientation.z) < canvasTolerancePRY_) &&
+                (abs(localCanvas.orientation.w - canvas_.centre.pose.orientation.w) < canvasTolerancePRY_))
+                {
+                    canvas_.consistent = true;
+                }
+
+                canvas_.centre.pose = localCanvas;
+                canvas_.iterTotal = localIter;
+                
+                geometry_msgs::msg::PoseArray tfCanvasPoseConv;
+                tfCanvasPoseConv.poses.push_back(canvas_.centre.pose);
+                addMarker(tfCanvasPoseConv, markerType::LOCAL_CANVAS_CENTRE);
+            }
         }
 
         if(markersUpdated)
@@ -540,3 +558,6 @@ geometry_msgs::msg::PoseStamped ArmInterface::poseStampedTransform(const std::st
 
     return transfPose;
 }
+
+
+///////////////////////////////////////////////////////////////////////////////

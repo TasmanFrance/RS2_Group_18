@@ -40,7 +40,46 @@ public:
 
 
 private:
-//marker types
+//Canvas internal model
+    struct
+    {
+        geometry_msgs::msg::PoseArray corners; //TopLeft clockwise
+        geometry_msgs::msg::PoseStamped centre;
+        double size_x;
+        double size_y;
+        unsigned int iterTotal;
+        bool consistent;
+    } canvas_;
+    double canvasTolerancePos_;
+    double canvasTolerancePRY_;
+//Control state machine
+    enum armState
+    {
+        ARM_ST_INIT,
+        ARM_ST_MOVE,
+        ARM_ST_READY,
+        ARM_ST_COMPLETE
+    };
+    armState armState_;
+//Mission state machine
+    enum missionState
+    {
+        MISSION_ST_INIT,
+        MISSION_ST_LOCALISE,
+        MISSION_ST_PLOT,
+        MISSION_ST_COMPLETE
+    };
+    armState armState_;
+//End effector state machine
+//(manages the transform applied to the tool0 orientation and position)
+    enum eeState
+    {
+        EE_ST_CAMERA,
+        EE_ST_PEN_DOWN,
+        EE_ST_PEN_UP
+    };
+    eeState eeState_;
+//Marker types
     enum markerType
     {
         TPP_PEN_UP,
